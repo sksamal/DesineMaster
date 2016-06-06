@@ -1,0 +1,13 @@
+fat4_out_AvgHopcount	3.73748
+fat4_out_FlowAccepted	3838.1
+fat4_out_FlowBlocked	286.584
+fat4_out_FlowRejectQoS	55.7
+fat4_out_FlowRejectSetup	5.2
+fat4_out_FlowTotal	3899
+fat4_out_NumUpdates	584410
+fat4_out_TPAccepted	117202
+fat4_out_TPBlocked	206.03
+fat4_out_TPProcess	114897
+fat4_out_TPRejectQoS	0
+fat4_out_TPRejectSetup	2099.01
+fat4_out_TPTotal	0

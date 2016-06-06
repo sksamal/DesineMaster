@@ -1,0 +1,12 @@
+cell_out_AvgHopcount	4.36
+cell_out_FlowAccepted	22.5
+cell_out_FlowBlocked	1.5
+cell_out_FlowRejectQoS	0
+cell_out_FlowRejectSetup	5
+cell_out_FlowTotal	29
+cell_out_NumUpdates	1036
+cell_out_TPAccepted	650.809
+cell_out_TPBlocked	49.7585
+cell_out_TPRejectQoS	0
+cell_out_TPRejectSetup	165.779
+cell_out_TPTotal	866.346

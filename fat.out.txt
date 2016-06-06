@@ -1,0 +1,12 @@
+fat_out_AvgHopcount	4.84211
+fat_out_FlowAccepted	20.7
+fat_out_FlowBlocked	2.4
+fat_out_FlowRejectQoS	0
+fat_out_FlowRejectSetup	5.9
+fat_out_FlowTotal	29
+fat_out_NumUpdates	758.4
+fat_out_TPAccepted	589.756
+fat_out_TPBlocked	95.5479
+fat_out_TPRejectQoS	0
+fat_out_TPRejectSetup	199.899
+fat_out_TPTotal	885.203

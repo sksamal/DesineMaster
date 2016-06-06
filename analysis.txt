@@ -1,0 +1,234 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  Ts/call  Ts/call  name    
+ 25.12     12.12    12.12                             WSDijkstraAlgorithm::compute(int const&, int const&, Topology*)
+  6.47     15.24     3.12                             bool __gnu_cxx::operator==<int const*, std::vector<int, std::allocator<int> > >(__gnu_cxx::__normal_iterator<int const*, std::vector<int, std::allocator<int> > > const&, __gnu_cxx::__normal_iterator<int const*, std::vector<int, std::allocator<int> > > const&)
+  6.39     18.33     3.09                             std::vector<int, std::allocator<int> >::begin() const
+  5.03     20.75     2.43                             std::vector<int, std::allocator<int> >::empty() const
+  4.67     23.01     2.26                             std::vector<int, std::allocator<int> >::end() const
+  4.64     25.25     2.24                             __gnu_cxx::__normal_iterator<int const*, std::vector<int, std::allocator<int> > >::__normal_iterator(int const* const&)
+  2.98     26.69     1.44                             Link::getReservableCapacity() const
+  2.59     27.94     1.25                             LinkListIterator::operator()()
+  2.31     29.05     1.12                             void std::vector<int, std::allocator<int> >::_M_emplace_back_aux<int const&>(int const&)
+  1.56     29.81     0.76                             std::vector<int, std::allocator<int> >::push_back(int const&)
+  1.55     30.56     0.75                             __gnu_cxx::__normal_iterator<int const*, std::vector<int, std::allocator<int> > >::base() const
+  1.49     31.28     0.72                             std::_Rb_tree<int, std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*>, std::_Select1st<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >, std::less<int>, std::allocator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > >::_M_lower_bound(std::_Rb_tree_node<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > const*, std::_Rb_tree_node<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > const*, int const&) const
+  1.37     31.94     0.66                             LinkListIterator::operator*() const
+  1.29     32.56     0.62                             RandomNumberGenerator::psdes(unsigned long&, unsigned long&)
+  1.20     33.14     0.58                             std::_Rb_tree<int, std::pair<int const, Link*>, std::_Select1st<std::pair<int const, Link*> >, std::less<int>, std::allocator<std::pair<int const, Link*> > >::begin()
+  0.97     33.61     0.47                             std::less<int>::operator()(int const&, int const&) const
+  0.93     34.06     0.45                             AbstractShortestPathAlgorithm::compute(Flow const&)
+  0.93     34.51     0.45                             std::vector<int, std::allocator<int> >::size() const
+  0.92     34.95     0.45                             void __gnu_cxx::new_allocator<int>::construct<int, int const&>(int*, int const&)
+  0.89     35.38     0.43                             int const& std::forward<int const&>(std::remove_reference<int const&>::type&)
+  0.62     35.68     0.30                             std::_Rb_tree_const_iterator<std::pair<int const, Link*> >::operator!=(std::_Rb_tree_const_iterator<std::pair<int const, Link*> > const&) const
+  0.62     35.98     0.30                             std::_Rb_tree_const_iterator<std::pair<int const, Link*> >::_Rb_tree_const_iterator(std::_Rb_tree_iterator<std::pair<int const, Link*> > const&)
+  0.60     36.27     0.29                             std::_Rb_tree_const_iterator<std::pair<int const, Link*> >::operator->() const
+  0.58     36.55     0.28                             std::vector<int, std::allocator<int> >::_M_check_len(unsigned long, char const*) const
+  0.57     36.83     0.28                             std::_Rb_tree_iterator<std::pair<int const, Link*> >::_Rb_tree_iterator(std::_Rb_tree_node<std::pair<int const, Link*> >*)
+  0.54     37.09     0.26                             void std::allocator_traits<std::allocator<int> >::destroy<int>(std::allocator<int>&, int*)
+  0.52     37.34     0.25                             int* std::__copy_move<true, true, std::random_access_iterator_tag>::__copy_m<int>(int const*, int const*, int*)
+  0.52     37.59     0.25                             LinkListIterator::operator++()
+  0.49     37.82     0.24                             decltype (_S_construct({parm#1}, {parm#2}, (forward<int const&>)({parm#3}))) std::allocator_traits<std::allocator<int> >::construct<int, int const&>(std::allocator<int>&, int*, int const&)
+  0.48     38.05     0.23                             std::vector<int, std::allocator<int> >::max_size() const
+  0.46     38.27     0.22                             std::_Rb_tree_const_iterator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >::operator->() const
+  0.46     38.49     0.22                             std::_Rb_tree_const_iterator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >::operator++()
+  0.46     38.71     0.22                             std::vector<int, std::allocator<int> >::clear()
+  0.46     38.93     0.22                             int* std::copy<std::move_iterator<int*>, int*>(std::move_iterator<int*>, std::move_iterator<int*>, int*)
+  0.42     39.14     0.21                             std::_Iter_base<int*, false>::_S_base(int*)
+  0.41     39.34     0.20                             std::move_iterator<int*>::move_iterator(int*)
+  0.41     39.54     0.20                             std::_Rb_tree<int, std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*>, std::_Select1st<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >, std::less<int>, std::allocator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > >::_S_key(std::_Rb_tree_node<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > const*)
+  0.40     39.73     0.20                             std::_Vector_base<int, std::allocator<int> >::_M_deallocate(int*, unsigned long)
+  0.39     39.92     0.19                             std::_Select1st<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >::operator()(std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> const&) const
+  0.39     40.11     0.19                             std::_Rb_tree_const_iterator<std::pair<int const, Link*> >::operator==(std::_Rb_tree_const_iterator<std::pair<int const, Link*> > const&) const
+  0.39     40.30     0.19                             int* std::__uninitialized_move_if_noexcept_a<int*, int*, std::allocator<int> >(int*, int*, int*, std::allocator<int>&)
+  0.38     40.49     0.19                             std::_Rb_tree_const_iterator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >::_Rb_tree_const_iterator(std::_Rb_tree_node<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > const*)
+  0.38     40.67     0.19                             std::_Miter_base<std::move_iterator<int*> >::iterator_type std::__miter_base<std::move_iterator<int*> >(std::move_iterator<int*>)
+  0.37     40.85     0.18                             PeriodLSUpdateVisitor::getLSUpdateCapacity()
+  0.37     41.03     0.18                             Link::getCost() const
+  0.37     41.21     0.18                             std::_Vector_base<int, std::allocator<int> >::_M_allocate(unsigned long)
+  0.37     41.39     0.18                             std::_Rb_tree_const_iterator<std::pair<int const, Link*> >::operator++()
+  0.37     41.57     0.18                             std::_Rb_tree<int, std::pair<int const, Link*>, std::_Select1st<std::pair<int const, Link*> >, std::less<int>, std::allocator<std::pair<int const, Link*> > >::end()
+  0.37     41.75     0.18                             std::enable_if<std::allocator_traits<std::allocator<int> >::__construct_helper<int<int const&> >::value, void>::type std::allocator_traits<std::allocator<int> >::_S_construct<int, int const&>(std::allocator<int>&, int*, int const&)
+  0.35     41.92     0.17                             std::_Rb_tree<int, std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*>, std::_Select1st<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >, std::less<int>, std::allocator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > >::_S_value(std::_Rb_tree_node<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > const*)
+  0.35     42.09     0.17                             std::move_iterator<int*> std::__make_move_if_noexcept_iterator<int*, std::move_iterator<int*> >(int*)
+  0.32     42.25     0.16                             std::allocator_traits<std::allocator<int> >::max_size(std::allocator<int> const&)
+  0.32     42.40     0.16                             void std::_Destroy<int*>(int*, int*)
+  0.29     42.54     0.14                             std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >::begin()
+  0.29     42.68     0.14                             std::move_iterator<int*>::base() const
+  0.29     42.82     0.14                             std::enable_if<std::allocator_traits<std::allocator<int> >::__maxsize_helper<std::allocator<int> const>::value, unsigned long>::type std::allocator_traits<std::allocator<int> >::_S_max_size<std::allocator<int> const>(std::allocator<int> const&)
+  0.29     42.96     0.14                             std::_Niter_base<int*>::iterator_type std::__niter_base<int*>(int*)
+  0.27     43.09     0.13                             std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> const* std::__addressof<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> const>(std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> const&)
+  0.26     43.22     0.13                             int* std::__copy_move_a<true, int*, int*>(int*, int*, int*)
+  0.25     43.34     0.12                             std::_Rb_tree_const_iterator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >::operator!=(std::_Rb_tree_const_iterator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > const&) const
+  0.25     43.46     0.12                             std::_Rb_tree<int, std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*>, std::_Select1st<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >, std::less<int>, std::allocator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > >::end() const
+  0.23     43.57     0.11                             unsigned long const& std::max<unsigned long>(unsigned long const&, unsigned long const&)
+  0.23     43.68     0.11                             std::_Vector_base<int, std::allocator<int> >::_Vector_impl::_Vector_impl()
+  0.23     43.79     0.11                             std::pair<int const, Link*> const* std::__addressof<std::pair<int const, Link*> const>(std::pair<int const, Link*> const&)
+  0.23     43.90     0.11                             int* std::__copy_move_a2<true, int*, int*>(int*, int*, int*)
+  0.23     44.01     0.11                             int* std::uninitialized_copy<std::move_iterator<int*>, int*>(std::move_iterator<int*>, std::move_iterator<int*>, int*)
+  0.23     44.12     0.11                             void std::_Destroy<int*, int>(int*, int*, std::allocator<int>&)
+  0.21     44.22     0.10                             std::map<int, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*, std::less<int>, std::allocator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > >::find(int const&) const
+  0.21     44.32     0.10                             std::vector<int, std::allocator<int> >::_M_erase_at_end(int*)
+  0.20     44.41     0.10                             std::_Iter_base<std::move_iterator<int*>, true>::_S_base(std::move_iterator<int*>)
+  0.20     44.51     0.10                             std::_Vector_base<int, std::allocator<int> >::_M_get_Tp_allocator()
+  0.19     44.60     0.09                             LinkListIterator::LinkListIterator(std::map<int, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*, std::less<int>, std::allocator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > > const*, int const&)
+  0.19     44.69     0.09                             RandomNumberGenerator::generate()
+  0.19     44.78     0.09                             std::_Rb_tree_const_iterator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >::operator==(std::_Rb_tree_const_iterator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > const&) const
+  0.19     44.87     0.09                             int* std::__uninitialized_copy<true>::__uninit_copy<std::move_iterator<int*>, int*>(std::move_iterator<int*>, std::move_iterator<int*>, int*)
+  0.19     44.96     0.09                             int* std::__uninitialized_copy_a<std::move_iterator<int*>, int*, int>(std::move_iterator<int*>, std::move_iterator<int*>, int*, std::allocator<int>&)
+  0.18     45.04     0.09                             std::_Vector_base<int, std::allocator<int> >::~_Vector_base()
+  0.17     45.12     0.08                             DesineModel::execute(int const&)
+  0.17     45.20     0.08                             std::_Deque_iterator<int, int&, int*>::_Deque_iterator(std::_Deque_iterator<int, int&, int*> const&)
+  0.17     45.28     0.08                             std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >::end()
+  0.17     45.36     0.08                             std::vector<int, std::allocator<int> >::~vector()
+  0.17     45.44     0.08                             std::_Rb_tree<int, std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*>, std::_Select1st<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >, std::less<int>, std::allocator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > >::_M_lower_bound(std::_Rb_tree_node<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >*, std::_Rb_tree_node<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >*, int const&)
+  0.15     45.51     0.07                             __gnu_cxx::new_allocator<int>::max_size() const
+  0.15     45.58     0.07                             std::map<int, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*, std::less<int>, std::allocator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > >::end() const
+  0.15     45.65     0.07                             std::deque<int, std::allocator<int> >::push_front(int const&)
+  0.15     45.72     0.07                             std::__deque_buf_size(unsigned long)
+  0.12     45.78     0.06                             std::less<double>::operator()(double const&, double const&) const
+  0.12     45.84     0.06                             std::_Rb_tree_const_iterator<std::pair<int const, Link*> >::_Rb_tree_const_iterator()
+  0.12     45.90     0.06                             _GLOBAL__sub_I__ZN10DesineDataC2ERKSsRKmS3_
+  0.12     45.96     0.06                             std::_Rb_tree_const_iterator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >::_Rb_tree_const_iterator()
+  0.11     46.02     0.06                             operator new(unsigned long, void*)
+  0.10     46.07     0.05                             MinHopLCFVisitor::getCost(AbstractNetworkElement const*) const
+  0.10     46.12     0.05                             std::_Rb_tree_iterator<std::pair<int const, double> >::operator*() const
+  0.10     46.17     0.05                             std::_Rb_tree<int, std::pair<int const, Link*>, std::_Select1st<std::pair<int const, Link*> >, std::less<int>, std::allocator<std::pair<int const, Link*> > >::_M_lower_bound(std::_Rb_tree_node<std::pair<int const, Link*> >*, std::_Rb_tree_node<std::pair<int const, Link*> >*, int const&)
+  0.10     46.22     0.05                             std::_Rb_tree<int, std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*>, std::_Select1st<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >, std::less<int>, std::allocator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > >::_S_left(std::_Rb_tree_node_base const*)
+  0.10     46.27     0.05                             std::_Rb_tree<int, std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*>, std::_Select1st<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >, std::less<int>, std::allocator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > >::_S_right(std::_Rb_tree_node_base const*)
+  0.08     46.31     0.04                             __gnu_cxx::new_allocator<int>::allocate(unsigned long, void const*)
+  0.08     46.35     0.04                             Link::getDestination() const
+  0.08     46.39     0.04                             Time::getTime() const
+  0.08     46.43     0.04                             LinkList::getIterator(int const&) const
+  0.08     46.47     0.04                             std::_Rb_tree<int, std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*>, std::_Select1st<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >, std::less<int>, std::allocator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > >::find(int const&) const
+  0.08     46.51     0.04                             std::_Rb_tree<int, std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*>, std::_Select1st<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >, std::less<int>, std::allocator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > >::_S_value(std::_Rb_tree_node_base const*)
+  0.07     46.54     0.04                             LinkList::find(int const&, int const&) const
+  0.07     46.58     0.04                             std::_Vector_base<int, std::allocator<int> >::_M_get_Tp_allocator() const
+  0.07     46.61     0.04                             std::vector<int, std::allocator<int> >::operator[](unsigned long)
+  0.06     46.64     0.03                             LinkListIterator::~LinkListIterator()
+  0.06     46.67     0.03                             __gnu_cxx::new_allocator<int>::deallocate(int*, unsigned long)
+  0.06     46.70     0.03                             Link::getQoS(int const&) const
+  0.06     46.73     0.03                             std::_Deque_iterator<int, int&, int*>::operator+(long) const
+  0.06     46.76     0.03                             std::_Vector_base<int, std::allocator<int> >::_Vector_impl::~_Vector_impl()
+  0.06     46.79     0.03                             std::_Vector_base<int, std::allocator<int> >::_Vector_base()
+  0.06     46.82     0.03                             std::vector<int, std::allocator<int> >::vector()
+  0.05     46.85     0.03                             LinkList::getIterator() const
+  0.05     46.87     0.03                             void std::_Destroy_aux<true>::__destroy<int*>(int*, int*)
+  0.05     46.90     0.03                             int* std::__copy_move_backward_a<true, int*, int*>(int*, int*, int*)
+  0.04     46.92     0.02                             UniformVar::generate()
+  0.04     46.94     0.02                             MinHopLCFVisitor::visitLink(AbstractNetworkElement const*)
+  0.04     46.96     0.02                             MinHopLCFVisitor::~MinHopLCFVisitor()
+  0.04     46.98     0.02                             Link::allocate(double const&)
+  0.04     47.00     0.02                             FlowList::update(double const&)
+  0.04     47.02     0.02                             Topology::setLinkCostFunction(std::string const&)
+  0.04     47.04     0.02                             Topology::rollbackLinkListMemento(LinkListMemento*)
+  0.04     47.06     0.02                             __gnu_cxx::new_allocator<int>::new_allocator()
+  0.04     47.08     0.02                             Link::getSource() const
+  0.04     47.10     0.02                             Topology::getLinkIterator() const
+  0.04     47.12     0.02                             std::_Select1st<std::pair<int const, Link*> >::operator()(std::pair<int const, Link*> const&) const
+  0.04     47.14     0.02                             std::map<int, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*, std::less<int>, std::allocator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > >::key_comp() const
+  0.04     47.16     0.02                             std::vector<int, std::allocator<int> >::_M_range_check(unsigned long) const
+  0.04     47.18     0.02                             std::allocator<int>::~allocator()
+  0.04     47.20     0.02                             std::_Deque_base<int, std::allocator<int> >::_Deque_impl::_Deque_impl()
+  0.04     47.22     0.02                             std::_Deque_base<int, std::allocator<int> >::_M_allocate_node()
+  0.04     47.24     0.02                             std::_Deque_iterator<int, int const&, int const*>::operator++()
+  0.04     47.26     0.02                             std::_Rb_tree_iterator<std::pair<double const, Flow> >::operator++()
+  0.04     47.28     0.02                             std::_Rb_tree_iterator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >::_Rb_tree_iterator(std::_Rb_tree_node<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >*)
+  0.04     47.30     0.02                             std::map<int, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*, std::less<int>, std::allocator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > >::end()
+  0.04     47.32     0.02                             std::_Rb_tree<int, std::pair<int const, Link*>, std::_Select1st<std::pair<int const, Link*> >, std::less<int>, std::allocator<std::pair<int const, Link*> > >::_M_get_insert_hint_unique_pos(std::_Rb_tree_const_iterator<std::pair<int const, Link*> >, int const&)
+  0.04     47.34     0.02                             std::_Rb_tree<int, std::pair<int const, Link*>, std::_Select1st<std::pair<int const, Link*> >, std::less<int>, std::allocator<std::pair<int const, Link*> > >::find(int const&)
+  0.04     47.36     0.02                             std::_Deque_iterator<int, int&, int*>::difference_type std::operator-<int, int&, int*>(std::_Deque_iterator<int, int&, int*> const&, std::_Deque_iterator<int, int&, int*> const&)
+  0.03     47.37     0.02                             std::allocator<double>::allocator()
+  0.03     47.39     0.02                             std::allocator<int>::allocator()
+  0.03     47.40     0.02                             operator delete(void*, void*)
+  0.02     47.41     0.01                             _GLOBAL__sub_I__ZN10BufferListD2Ev
+  0.02     47.42     0.01                             _GLOBAL__sub_I__ZN17DijkstraAlgorithmC2ERKSt5dequeISsSaISsEE
+  0.02     47.43     0.01                             FlowManager::create(int, int, double, double)
+  0.02     47.44     0.01                             ExponentialVar::generate()
+  0.02     47.45     0.01                             SimpleVariable<double>::operator+=(SimpleVariable<double> const&)
+  0.02     47.46     0.01                             SimpleVariable<unsigned long>::add(unsigned long const&)
+  0.02     47.47     0.01                             SimpleVariable<unsigned long>::operator+=(SimpleVariable<unsigned long> const&)
+  0.02     47.48     0.01                             LinkListIterator::LinkListIterator(std::map<int, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*, std::less<int>, std::allocator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > > const*)
+  0.02     47.49     0.01                             DijkstraAlgorithm::compute(Flow const&)
+  0.02     47.50     0.01                             WSDijkstraAlgorithm::compute(Flow const&)
+  0.02     47.51     0.01                             PeriodLSUpdateVisitor::updateLSCapacity()
+  0.02     47.52     0.01                             AbstractNetworkElement::~AbstractNetworkElement()
+  0.02     47.53     0.01                             Link::release(double const&)
+  0.02     47.54     0.01                             Model::~Model()
+  0.02     47.55     0.01                             __gnu_cxx::new_allocator<std::_Rb_tree_node<std::pair<double const, Flow> > >::deallocate(std::_Rb_tree_node<std::pair<double const, Flow> >*, unsigned long)
+  0.02     47.56     0.01                             void __gnu_cxx::new_allocator<int>::destroy<int>(int*)
+  0.02     47.57     0.01                             __gnu_cxx::new_allocator<int>::new_allocator(__gnu_cxx::new_allocator<int> const&)
+  0.02     47.58     0.01                             LinkStateUpdateVisitor::isTimerBased() const
+  0.02     47.59     0.01                             Flow::getRequestedCapacity() const
+  0.02     47.60     0.01                             Flow::release() const
+  0.02     47.61     0.01                             Flow::allocate() const
+  0.02     47.62     0.01                             Link::getCapacity() const
+  0.02     47.63     0.01                             Link::getAvailableCapacity() const
+  0.02     47.64     0.01                             Link::print(std::ostream&) const
+  0.02     47.65     0.01                             Topology::getRandomTorNode(RandomVar*) const
+  0.02     47.66     0.01                             Topology::link(int const&, int const&) const
+  0.02     47.67     0.01                             Topology::print(std::ostream&) const
+  0.02     47.68     0.01                             __gnu_cxx::new_allocator<int*>::max_size() const
+  0.02     47.69     0.01                             std::_Deque_iterator<int, int const&, int const*>::operator*() const
+  0.02     47.70     0.01                             std::_Deque_iterator<int, int&, int*>::operator[](long) const
+  0.02     47.71     0.01                             std::deque<int, std::allocator<int> >::end() const
+  0.02     47.72     0.01                             std::deque<int, std::allocator<int> >::operator[](unsigned long) const
+  0.02     47.73     0.01                             std::_Rb_tree<int, std::pair<int const, Link*>, std::_Select1st<std::pair<int const, Link*> >, std::less<int>, std::allocator<std::pair<int const, Link*> > >::size() const
+  0.02     47.74     0.01                             std::_Rb_tree<int, std::pair<int const, Link*>, std::_Select1st<std::pair<int const, Link*> >, std::less<int>, std::allocator<std::pair<int const, Link*> > >::_M_begin() const
+  0.02     47.75     0.01                             std::_Rb_tree<int, std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*>, std::_Select1st<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >, std::less<int>, std::allocator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > >::begin() const
+  0.02     47.76     0.01                             std::_Rb_tree<int, std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*>, std::_Select1st<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >, std::less<int>, std::allocator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > >::_M_begin() const
+  0.02     47.77     0.01                             std::allocator<double>::allocator(std::allocator<double> const&)
+  0.02     47.78     0.01                             std::_Iter_base<__gnu_cxx::__normal_iterator<double const*, std::vector<double, std::allocator<double> > >, true>::_S_base(__gnu_cxx::__normal_iterator<double const*, std::vector<double, std::allocator<double> > >)
+  0.02     47.79     0.01                             std::_Iter_base<__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, true>::_S_base(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >)
+  0.02     47.80     0.01                             std::_Iter_base<std::_Deque_iterator<int, int const&, int const*>, false>::_S_base(std::_Deque_iterator<int, int const&, int const*>)
+  0.02     47.81     0.01                             std::_Deque_base<int, std::allocator<int> >::_M_allocate_map(unsigned long)
+  0.02     47.82     0.01                             std::_Deque_base<int, std::allocator<int> >::_M_destroy_nodes(int**, int**)
+  0.02     47.83     0.01                             std::_Deque_base<int, std::allocator<int> >::_M_initialize_map(unsigned long)
+  0.02     47.84     0.01                             std::_Deque_base<int, std::allocator<int> >::_M_deallocate_node(int*)
+  0.02     47.85     0.01                             std::_Deque_iterator<int, int&, int*> std::__copy_move<false, false, std::random_access_iterator_tag>::__copy_m<std::_Deque_iterator<int, int const&, int const*>, std::_Deque_iterator<int, int&, int*> >(std::_Deque_iterator<int, int const&, int const*>, std::_Deque_iterator<int, int const&, int const*>, std::_Deque_iterator<int, int&, int*>)
+  0.02     47.86     0.01                             std::_Vector_base<double, std::allocator<double> >::~_Vector_base()
+  0.02     47.87     0.01                             std::_Deque_iterator<std::string, std::string&, std::string*>::_Deque_iterator(std::_Deque_iterator<std::string, std::string&, std::string*> const&)
+  0.02     47.88     0.01                             std::_Deque_iterator<int, int const&, int const*>::operator+=(long)
+  0.02     47.89     0.01                             std::_Deque_iterator<int, int&, int*>::_M_set_node(int**)
+  0.02     47.90     0.01                             std::_Deque_iterator<int, int&, int*>::_Deque_iterator()
+  0.02     47.91     0.01                             std::_Deque_iterator<int, int&, int*>::operator+=(long)
+  0.02     47.92     0.01                             std::_Deque_iterator<int, int&, int*>::operator++()
+  0.02     47.93     0.01                             std::_Deque_iterator<std::string, std::string&, std::string*> std::__uninitialized_copy<false>::__uninit_copy<std::_Deque_iterator<std::string, std::string const&, std::string const*>, std::_Deque_iterator<std::string, std::string&, std::string*> >(std::_Deque_iterator<std::string, std::string const&, std::string const*>, std::_Deque_iterator<std::string, std::string const&, std::string const*>, std::_Deque_iterator<std::string, std::string&, std::string*>)
+  0.02     47.94     0.01                             std::_Deque_iterator<int, int&, int*> std::__uninitialized_copy<true>::__uninit_copy<std::move_iterator<std::_Deque_iterator<int, int&, int*> >, std::_Deque_iterator<int, int&, int*> >(std::move_iterator<std::_Deque_iterator<int, int&, int*> >, std::move_iterator<std::_Deque_iterator<int, int&, int*> >, std::_Deque_iterator<int, int&, int*>)
+  0.02     47.95     0.01                             std::map<double, unsigned long, std::less<double>, std::allocator<std::pair<double const, unsigned long> > >::operator[](double const&)
+  0.02     47.96     0.01                             std::map<int, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*, std::less<int>, std::allocator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > >::begin()
+  0.02     47.97     0.01                             std::pair<std::_Rb_tree_node_base*, std::_Rb_tree_node_base*>::pair<std::_Rb_tree_node<std::pair<double const, Flow> >*&, std::_Rb_tree_node<std::pair<double const, Flow> >*&, void>(std::_Rb_tree_node<std::pair<double const, Flow> >*&, std::_Rb_tree_node<std::pair<double const, Flow> >*&)
+  0.02     47.98     0.01                             std::pair<double, Flow>::pair<double, Flow, void>(double&&, Flow&&)
+  0.02     47.99     0.01                             void std::deque<int, std::allocator<int> >::_M_range_insert_aux<std::_Deque_iterator<int, int const&, int const*> >(std::_Deque_iterator<int, int&, int*>, std::_Deque_iterator<int, int const&, int const*>, std::_Deque_iterator<int, int const&, int const*>, std::forward_iterator_tag)
+  0.02     48.00     0.01                             std::deque<int, std::allocator<int> >::swap(std::deque<int, std::allocator<int> >&)
+  0.02     48.01     0.01                             double* std::vector<double, std::allocator<double> >::_M_allocate_and_copy<__gnu_cxx::__normal_iterator<double const*, std::vector<double, std::allocator<double> > > >(unsigned long, __gnu_cxx::__normal_iterator<double const*, std::vector<double, std::allocator<double> > >, __gnu_cxx::__normal_iterator<double const*, std::vector<double, std::allocator<double> > >)
+  0.02     48.02     0.01                             std::vector<double, std::allocator<double> >::operator=(std::vector<double, std::allocator<double> > const&)
+  0.02     48.03     0.01                             std::vector<int, std::allocator<int> >::at(unsigned long)
+  0.02     48.04     0.01                             std::_Rb_tree<double, std::pair<double const, Flow>, std::_Select1st<std::pair<double const, Flow> >, std::less<double>, std::allocator<std::pair<double const, Flow> > >::end()
+  0.02     48.05     0.01                             std::_Rb_tree<double, std::pair<double const, Flow>, std::_Select1st<std::pair<double const, Flow> >, std::less<double>, std::allocator<std::pair<double const, Flow> > >::_M_end()
+  0.02     48.06     0.01                             std::_Rb_tree<double, std::pair<double const, Flow>, std::_Select1st<std::pair<double const, Flow> >, std::less<double>, std::allocator<std::pair<double const, Flow> > >::_S_value(std::_Rb_tree_node<std::pair<double const, Flow> > const*)
+  0.02     48.07     0.01                             std::_Rb_tree<int, std::pair<int const, Link*>, std::_Select1st<std::pair<int const, Link*> >, std::less<int>, std::allocator<std::pair<int const, Link*> > >::_S_key(std::_Rb_tree_node_base const*)
+  0.02     48.08     0.01                             std::_Rb_tree<int, std::pair<int const, Link*>, std::_Select1st<std::pair<int const, Link*> >, std::less<int>, std::allocator<std::pair<int const, Link*> > >::_M_begin()
+  0.02     48.09     0.01                             std::_Rb_tree<int, std::pair<int const, Link*>, std::_Select1st<std::pair<int const, Link*> >, std::less<int>, std::allocator<std::pair<int const, Link*> > >::_S_right(std::_Rb_tree_node_base*)
+  0.02     48.10     0.01                             std::_Rb_tree_node<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >* std::_Rb_tree<int, std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*>, std::_Select1st<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >, std::less<int>, std::allocator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > >::_M_create_node<std::pair<int, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >(std::pair<int, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*>&&)
+  0.02     48.11     0.01                             std::pair<std::_Rb_tree_iterator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >, bool> std::_Rb_tree<int, std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*>, std::_Select1st<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >, std::less<int>, std::allocator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > >::_M_insert_unique<std::pair<int, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >(std::pair<int, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*>&&)
+  0.02     48.12     0.01                             std::_Rb_tree<int, std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*>, std::_Select1st<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >, std::less<int>, std::allocator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > >::_M_get_insert_unique_pos(int const&)
+  0.02     48.13     0.01                             std::_Rb_tree<int, std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*>, std::_Select1st<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >, std::less<int>, std::allocator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > >::_S_left(std::_Rb_tree_node_base*)
+  0.02     48.14     0.01                             std::_Rb_tree<int, std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*>, std::_Select1st<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >, std::less<int>, std::allocator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > >::_M_begin()
+  0.02     48.15     0.01                             std::_Rb_tree<int, std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*>, std::_Select1st<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >, std::less<int>, std::allocator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > >::_M_erase(std::_Rb_tree_node<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >*)
+  0.02     48.16     0.01                             std::_Rb_tree<int, std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*>, std::_Select1st<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >, std::less<int>, std::allocator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > >::_S_right(std::_Rb_tree_node_base*)
+  0.02     48.17     0.01                             std::_Rb_tree_iterator<std::pair<int const, double> > std::_Rb_tree<int, std::pair<int const, double>, std::_Select1st<std::pair<int const, double> >, std::less<int>, std::allocator<std::pair<int const, double> > >::_M_emplace_hint_unique<std::piecewise_construct_t const&, std::tuple<int&&>, std::tuple<> >(std::_Rb_tree_const_iterator<std::pair<int const, double> >, std::piecewise_construct_t const&, std::tuple<int&&>&&, std::tuple<>&&)
+  0.02     48.18     0.01                             __gnu_cxx::__enable_if<std::__is_scalar<double>::__value, double*>::__type std::__fill_n_a<double*, unsigned long, double>(double*, unsigned long, double const&)
+  0.02     48.19     0.01                             std::_Deque_iterator<int, int&, int*> std::__copy_move_a2<false, std::_Deque_iterator<int, int const&, int const*>, std::_Deque_iterator<int, int&, int*> >(std::_Deque_iterator<int, int const&, int const*>, std::_Deque_iterator<int, int const&, int const*>, std::_Deque_iterator<int, int&, int*>)
+  0.02     48.20     0.01                             std::_Deque_iterator<int, int&, int*> std::__copy_move_a2<true, std::_Deque_iterator<int, int&, int*>, std::_Deque_iterator<int, int&, int*> >(std::_Deque_iterator<int, int&, int*>, std::_Deque_iterator<int, int&, int*>, std::_Deque_iterator<int, int&, int*>)
+  0.02     48.21     0.01                             void std::__do_alloc_on_copy<std::allocator<double> >(std::allocator<double>&, std::allocator<double> const&, std::integral_constant<bool, false>)
+  0.02     48.22     0.01                             double* std::copy<__gnu_cxx::__normal_iterator<double const*, std::vector<double, std::allocator<double> > >, double*>(__gnu_cxx::__normal_iterator<double const*, std::vector<double, std::allocator<double> > >, __gnu_cxx::__normal_iterator<double const*, std::vector<double, std::allocator<double> > >, double*)
+  0.01     48.23     0.01                             double* std::__uninitialized_copy<true>::__uninit_copy<__gnu_cxx::__normal_iterator<double const*, std::vector<double, std::allocator<double> > >, double*>(__gnu_cxx::__normal_iterator<double const*, std::vector<double, std::allocator<double> > >, __gnu_cxx::__normal_iterator<double const*, std::vector<double, std::allocator<double> > >, double*)
+  0.01     48.23     0.01                             std::_Rb_tree<std::string, std::pair<std::string const, std::vector<double, std::allocator<double> > >, std::_Select1st<std::pair<std::string const, std::vector<double, std::allocator<double> > > >, std::less<std::string>, std::allocator<std::pair<std::string const, std::vector<double, std::allocator<double> > > > >::_M_destroy_node(std::_Rb_tree_node<std::pair<std::string const, std::vector<double, std::allocator<double> > > >*)
+  0.01     48.24     0.01                             std::_Rb_tree<std::string, std::pair<std::string const, std::vector<double, std::allocator<double> > >, std::_Select1st<std::pair<std::string const, std::vector<double, std::allocator<double> > > >, std::less<std::string>, std::allocator<std::pair<std::string const, std::vector<double, std::allocator<double> > > > >::begin()
+  0.01     48.24     0.01                             std::_Rb_tree_iterator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > std::_Rb_tree<int, std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*>, std::_Select1st<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >, std::less<int>, std::allocator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > >::_M_insert_<std::pair<int, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >(std::_Rb_tree_node_base*, std::_Rb_tree_node_base*, std::pair<int, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*>&&)
+  0.01     48.25     0.01                             std::_Rb_tree<int, std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*>, std::_Select1st<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> >, std::less<int>, std::allocator<std::pair<int const, std::map<int, Link*, std::less<int>, std::allocator<std::pair<int const, Link*> > >*> > >::lower_bound(int const&)
+  0.01     48.25     0.01                             std::_Deque_iterator<int, int&, int*> std::copy<std::_Deque_iterator<int, int const&, int const*>, std::_Deque_iterator<int, int&, int*> >(std::_Deque_iterator<int, int const&, int const*>, std::_Deque_iterator<int, int const&, int const*>, std::_Deque_iterator<int, int&, int*>)

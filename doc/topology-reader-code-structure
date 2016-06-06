@@ -1,0 +1,6 @@
+L1=No of nodes, No of edge nodes, No of QOS, InputType(Optional), IsDirected(Optional)
+L2=List of edge Nodes put into a linkedlist
+L3= 
+FlowSrc, FlowDest, FlowReqc (in case of traffic matrix)
+OR
+src, dest, cost/capacity, Array of link capactities 

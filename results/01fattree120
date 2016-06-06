@@ -1,0 +1,13 @@
+out_AvgHopcount	4.82618
+out_FlowAccepted	66260.4
+out_FlowBlocked	6347.07
+out_FlowRejectQoS	7184.5
+out_FlowRejectSetup	6555.1
+out_FlowTotal	80000
+out_NumUpdates	769594
+out_TPAccepted	2.3976e+06
+out_TPBlocked	260256
+out_TPProcess	1.87433e+06
+out_TPRejectQoS	0
+out_TPRejectSetup	263012
+out_TPTotal	0

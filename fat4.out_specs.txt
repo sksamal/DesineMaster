@@ -1,0 +1,16 @@
+Flows  4000
+Warmup  100
+Iterations  10
+Topology  
+LogDir  .
+LogType  LogTypeIgor
+Seed 436
+Endpoints  U 0 1
+Farrival  E 10
+Frandom  U 0 100
+Fbuffer E 10
+Fduration1  E 250
+Fduration2  E 250
+Fbandwidth  U 10 50
+QoSCons(0)  U 0 20
+QoSCons(1)  U 0 20

@@ -1,0 +1,12 @@
+slimnet_out_AvgHopcount	5.11073
+slimnet_out_FlowAccepted	28.4
+slimnet_out_FlowBlocked	0.1
+slimnet_out_FlowRejectQoS	0
+slimnet_out_FlowRejectSetup	0.5
+slimnet_out_FlowTotal	29
+slimnet_out_NumUpdates	4320
+slimnet_out_TPAccepted	863.886
+slimnet_out_TPBlocked	1.99014
+slimnet_out_TPRejectQoS	0
+slimnet_out_TPRejectSetup	18.9453
+slimnet_out_TPTotal	884.822
