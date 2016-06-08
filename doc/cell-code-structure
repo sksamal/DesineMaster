@@ -1,0 +1,14 @@
+ParamsReader Class
+  readParams --> Reads file line-by-line
+  getParameter("string"), getNextParameter() search for a key and return their value
+Parameters Class
+  (1) Get LOG_DIR, LOG_TYPE
+  (2) Get FLOWS, WARMUP, ITERATIONS, TOPOLOGY,SEED, L_CAPACITY
+  (3) Get ENDPOINTS (E = 0.25, U = 0.0,1.0)
+  (4) Get F_ARRIVAL, F_DURATION, F_BANDWIDTH, SPLIT_NUM
+  (5) Get multiple QOS_CONS parameters
+  (6) Get multiple LS_UPDATEINFO
+  (7) 
+IO/Tag.cpp
+  various string constants for logs, parameters, algorithms and topologies.
+  
