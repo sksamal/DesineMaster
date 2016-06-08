@@ -9,7 +9,7 @@
 	@echo "make desine"
 
 # Directories
-BASE_DIR=/home/deogun/ssamal/DesineMaster
+BASE_DIR=/work/deogun/ssamal/DesineMaster
 DOC_DIR=$(BASE_DIR)/doc
 SRC_DIR=$(BASE_DIR)/src
 OBJ_DIR=$(SRC_DIR)

@@ -4,12 +4,11 @@
 
     See header file for details
 
-    Author : T. Kleiberg
+    Author : Suraj Ketan Samal
     Version: 1
-    Date   : August 2004
+    Date   : June 7, 2016 
 
 ******************************************************************************/
-
 
 
 // Include(s)
@@ -53,6 +52,15 @@ SlimNetAlgorithm::~SlimNetAlgorithm()
     TRACE("SlimNetAlgorithm::~SlimNetAlgorithm <--");
 }
 
+// Print SlimNet Address 
+   string FormattedSlimNetAdd(int *addr,int level) {
+     char address[10]; // 10 levels
+     std::sprintf(address,"<%d",addr[0]); 
+     for(int i=1;i<level;i++)
+	std::sprintf(address,"%s,%d",address,addr[i]);
+     std::sprintf(address,"%s>",address);
+     return string(address);
+}
 
 //------------------------------------------------------------------------------
 //  Path WSSlimNetAlgorithm::compute()
@@ -73,11 +81,17 @@ Path SlimNetAlgorithm::compute(const int &flow_source,
     };
     NodeLabel* state = new NodeLabel[number_of_nodes];
     IntVector extras = topology->getExtras();
-    int k = extras[0];  // No of servers in a rack
-    int x = extras[1];  // Range of x
-    int y = extras[2];  // Range of y, No of cells = x*y
-    int tor =k*(x+y+2*x*y);
+    int k = extras[0];  // No of levels
+    int hosts_per_rack = extras[1];  // Hosts per rack 
+    int racks_per_level = extras[2];  // Range of y, No of cells = x*y
 
+    int hosts = hosts_per_rack*aggs;
+    int addresses[hosts][k+1];
+    for(int node= host;node < hosts; node++) {
+          genSlimNetAddress(node,racks_per_level,addresses[node],k+1);
+//        cout<<"node="<<node<<"Address="<<FormattedSlimNetAdd(addresses[node],k+1)<<endl;
+       }
+//
     // Initialization
     for (int counter = 0; counter < number_of_nodes; ++counter)
     {
@@ -90,73 +104,16 @@ Path SlimNetAlgorithm::compute(const int &flow_source,
     int dest = flow_destination; // First worknode is the source
     state[worknode].length = 0.0;
     state[worknode].visited = true;
-    int work_x = worknode%x, work_y = worknode/x;
-    int dest_x = dest%x, dest_y = dest/x;
-    int delta_x = dest_x - work_x;
-    int delta_y = dest_y - work_y;
+    int worknode = address[flow_source];
+    int dest = address[flow_destination];
 
-    // Repeat until destination has been visited
-    while(!state[flow_destination].visited && worknode != -1)
-    {
-       if(work_y%2 == 0)   /* Even */
-        {
-	   if(delta_x > delta_y)  {
- 	      if(delta_y > 0)
-		work_x++;		
-	   }
-        }
-       else		  /* Odd */
-        {
-	   if(delta_x > delta_y)
-        }
+    cout<<"\nSlimnet(k,hosts_per_rack,racks_per_level): ("<<k<<","<<hosts_per_rack<<","<<racks_per_level<<") , NumNodes="<<number_of_nodes<<endl;
 
-        for (LinkListIterator worklink = topology->getLinkIterator(worknode);
-            worklink(); ++worklink)
-        {
-//            (*worklink)->print(logid);
-            int destination = (*worklink)->getDestination();
-            double metric = (*worklink)->metric;
-            if ( (metric >= 0.0) && !state[destination].visited)
-            {
-                if (state[worknode].length + metric < state[destination].length)
-                {
-                    state[destination].predecessor = worknode;
-                    state[destination].length = state[worknode].length + metric;
-                    //ERROR("-" << destination << ' ' << state[destination].length);
-                } // end if
-            } // end if
-        }// end for LinkListIterator
-
-        // Find node with minimum length that has not been visited yet
-        // 3-9-2006 : In case of equal nodes, a random node is picked!
-        double min = DBL_MAX;
-        worknode = -1;
-        vector<int> worknodes;
-        for (int iter = 0 ; iter < number_of_nodes; ++iter)
-        {
-            if (!state[iter].visited)
-            {
-                if (state[iter].length < min)
-                {
-                    worknodes.clear();
-                    worknodes.push_back(iter);
-                    min = state[iter].length;
-                } else
-                if ( (state[iter].length == min) && !worknodes.empty() )
-                {
-                    worknodes.push_back(iter);
-                } // end if (!state[iter].
-            }
-        } // end for (int iter = 0
-
-        // pick random worknode from the worknodes vector
-        if (!worknodes.empty())
-        {
-            worknode = worknodes.at( (size_t) ceil( ((double) worknodes.size()) *
-                rng->generate()) - 1);
-            // Set label for new worknode
-            state[worknode].visited = true;
-        }
+    updateRecursive(flow_source,flow_destination,k,state);
+    if(!state[flow_destination].visited)
+    {  // Some problem
+	PRINT("Error");
+	return NULL;
     } // end: while...
 
     // path calculation
@@ -165,8 +122,6 @@ Path SlimNetAlgorithm::compute(const int &flow_source,
         worknode = flow_destination;
         while (worknode != flow_source)
         {
-            // add node at front because dijktra
-            // calculates path in reverse order
             result.push_front(worknode);
             worknode = state[worknode].predecessor;
         }
@@ -178,3 +133,21 @@ Path SlimNetAlgorithm::compute(const int &flow_source,
     TRACE("SlimNetAlgorithm::compute <--");
     return result;
 }
+
+void updateRecursive(int src, int dest, int l, int *state) 
+  {
+	if(src == dest) break;
+	else
+	{
+	  if(l==0) {  // only one level exists here
+		// If worknode and dest are connected, create the path and return.
+	  }
+	  else {
+	        // Connect using the next node, which has to be connected.  
+  	  }	        
+	}
+       state[destination].predecessor = worknode + tor;
+       state[destination].length = state[worknode+ tor].length + 1.0; /* Assume default 1 metric */
+       state[destination].visited = true;
+       worknode = destination - tor;
+  } 
