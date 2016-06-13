@@ -4,10 +4,9 @@
 
     Defines all the strings
 
-    Author : T. Kleiberg
-    Version: 1
-    Date   : July 2004
-    Feb8,2016 : Merged changes
+    Author : T. Kleiberg, July 2004
+    Feb 8,2016 : Merged changes
+    Updated: Suraj, May 2016
 ******************************************************************************/
 
 // Include(s)

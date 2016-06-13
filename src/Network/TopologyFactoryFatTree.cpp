@@ -1,3 +1,9 @@
+/******************************************************************************
+
+    source file TopologyFactoryFatTree.cpp with implementation of
+	createTopologyFatTree (adapted based on other topologies)
+    Author: Suraj  May2016
+******************************************************************************/
 Topology* TopologyFactory::createTopologyFatTree(const TString &description)
 {
     TRACE("TopologyFactory::createTopologyFatTree -->");

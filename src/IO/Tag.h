@@ -7,10 +7,9 @@
     Structure that is used for holding all possible tags.
     Use is eg: Tag::COMMENT instead of the value "#"
 
-    Author : T. Kleiberg
-    Version: 1
-    Date   : July 2004
+    Author : T. Kleiberg July 2004
     Feb8,2016: Merged changes
+    Updated: Suraj, 2016
 ******************************************************************************/
 
 

@@ -7,10 +7,8 @@
     This class is meant to represent the topology.
 
 
-    Author : T. Kleiberg
-    Version: 1
-    Date   : June 2004
-
+    Author : T. Kleiberg, June 2004
+    Updated: Suraj May 2016  - changes for slimnet,fattree and cell
 ******************************************************************************/
 
 

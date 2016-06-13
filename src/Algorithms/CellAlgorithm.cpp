@@ -2,11 +2,8 @@
 
     source file CellAlgorithm.cpp for class: CellAlgorithm
 
-    See header file for details
-
-    Author : T. Kleiberg
-    Version: 1
-    Date   : August 2004
+    See header file for details. Adapted from other algorithms
+    Suraj May,2016
 
 ******************************************************************************/
 

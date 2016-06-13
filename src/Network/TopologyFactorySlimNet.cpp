@@ -1,13 +1,11 @@
 /******************************************************************************
 
     source file TopologyFactorySlimNet.cpp with implementation of
-	createTopologySlimNet
-
-    Author : T. Kleiberg
-    Version: 1
-    Date   : Mar 2007
-
+	createTopologySlimNet (adapted based on other topologies)
+    Author: Suraj  May2016
 ******************************************************************************/
+
+
 //------------------------------------------------------------------------------
 // Create a SlimNet graph with k levels of nodes
 //

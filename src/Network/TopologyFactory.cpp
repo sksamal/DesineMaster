@@ -4,10 +4,8 @@
 
     See header file for details
 
-    Author : T. Kleiberg
-    Version: 1
-    Date   : Sep 2006
-
+    Author : T. Kleiberg  Sep 2006
+    Updated: Suraj May 2016, Added for FatTree,Cell and Slimnet
 ******************************************************************************/
 
 

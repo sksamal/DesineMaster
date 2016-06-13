@@ -9,10 +9,8 @@
     to be built, are passed on as a string. The Factory then parses the string
     and constructs the object likewise.
 
-    Author : T. Kleiberg
-    Version: 1
-    Date   : Sep 2006
-
+    Author : T. Kleiberg Sep 2006
+    Updated: Suraj May 2016, Added for FatTree,Cell and Slimnet
 ******************************************************************************/
 
 

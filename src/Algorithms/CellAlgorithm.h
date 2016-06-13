@@ -1,11 +1,11 @@
 #ifndef CELLALGORITHM_H
 #define CELLALGORITHM_H
 /******************************************************************************
-
+    Suraj May 21, 2016
     header file CellAlgorithm.h for class: CellAlgorithm
 
-    This class implements the base-class Algorithm for a Cell Shortest
-    Path implementation.
+    This class implements the base-class Algorithm for a Cell Routing
+    implementation.
 
 
 ******************************************************************************/

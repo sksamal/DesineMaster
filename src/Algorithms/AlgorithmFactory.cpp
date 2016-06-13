@@ -4,9 +4,8 @@
 
     See header file for details
 
-    Author : T. Kleiberg
-    Version: 1
-    Date   : June 2004
+    Author : T. Kleiberg, June 2004
+    Updated: Suraj, May 2016
 
 ******************************************************************************/
 

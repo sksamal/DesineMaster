@@ -52,7 +52,9 @@ SlimNetAlgorithm::~SlimNetAlgorithm()
     TRACE("SlimNetAlgorithm::~SlimNetAlgorithm <--");
 }
 
-// Print SlimNet Address 
+//------------------------------------------------------------------------------
+//  Helper menthod to return a formatted SlimNet address (for display purposes)
+//------------------------------------------------------------------------------
    string FormattedSlimNetAdd(int *addr,int level) {
      char address[10]; // 10 levels
      std::sprintf(address,"<%d",addr[0]); 

@@ -4,8 +4,8 @@
 
     header file SlimNetAlgorithm.h for class: SlimNetAlgorithm
 
-    This class implements the base-class Algorithm for a SlimNet Shortest
-    Path implementation.
+    This class implements the base-class Algorithm for a SlimNet
+    Routing implementation. Adapted based on other algorithms
 
 
 ******************************************************************************/
