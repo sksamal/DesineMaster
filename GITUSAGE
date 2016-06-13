@@ -1,25 +1,40 @@
 ========
 OVERVIEW
 ========
-This is a git repository hosted at git.unl.edu. If you are new to version control, we recommend you to look at some of the git basics. The tutorial at https://www.atlassian.com/git/tutorials/ might be helpful. 
+This is a git repository hosted at git.unl.edu. If you are new to version control, 
+we recommend you to look at some of the git basics. The tutorial 
+at https://www.atlassian.com/git/tutorials/ might be helpful. 
 
-This repository is private and can be cloned by only the members belonging to the project. If you are not a member yet, contact one of the team members to add you to the project.It also requires that you have an UNL account which will be needed for authentication to access the project.
+This repository is private and can be cloned by only the members belonging to the 
+project. If you are not a member yet, contact one of the team members to add you 
+to the project.It also requires that you have an UNL account which will be needed 
+for authentication to access the project.
 
-Changes to the repository can be pushed by only the members that have write access. This will need that your SSH Keys are uploaded for access. Here are steps:
-(1) Based on your OS, generate a SSH RSA/DSA Key Pair. I suggest to follow steps at this link:
+Changes to the repository can be pushed by only the members that have write access. 
+This will need that your SSH Keys are uploaded for access. Here are steps:
+(1) Based on your OS, generate a SSH RSA/DSA Key Pair. I suggest to follow steps 
+ at this link:
     https://help.github.com/articles/generating-an-ssh-key/
-(2) Logon to git.unl.edu with UNL account access. Go to "Profile Settings"-->"SSH Keys"-->Click on the "Add SSH Key" button.
-(3) Open your public key (which normally has the extension of ".pub") in a text editor, copy all its contents and paste it in the "Key" sectioni. Click on the "Add Key" button to successfully add the public key to your account.
+(2) Logon to git.unl.edu with UNL account access. Go to "Profile Settings"-->
+  "SSH Keys" -->Click on the "Add SSH Key" button.
+(3) Open your public key (which normally has the extension of ".pub") in a text 
+  editor, copy all its contents and paste it in the "Key" section. Click on the 
+  "Add Key" button to successfully add the public key to your account.
 (4) You should have permissions to push changes to the repository now.
 
-Note, currently there are no separate branches (as the team size is small). Hence, we need to make sure that we are reviewing and pushing in the correct changes properly. A good idea is to notify other developers when you pushed a set of changes.
+Note, currently there are no separate branches (as the team size is small). Hence, 
+we need to make sure that we are reviewing and pushing in the correct changes 
+properly. A good idea is to notify other developers when you pushed a set 
+of changes.
 
 ==========================
 IMPORTANT HELPFUL COMMANDS
 ==========================
-  The best resource for getting help with GIT is at https://help.github.com/. However here are some very frequently used commands:
+  The best resource for getting help with GIT is at https://help.github.com/. 
+However here are some very frequently used commands:
 
-a) To clone the repository (i.e make a copy of the repository to your local system)
+a) To clone the repository (i.e make a copy of the repository to your 
+  local system)
 
 	git clone <url> (i.e git@git.unl.edu:ssamal/DesineMaster.git)
 
@@ -49,21 +64,21 @@ g) To delete a remote repository url
 
 	git remote rm origin
 
-e) To push all changes from local repository to the remote (i.e on git.unl.edu)
+h) To push all changes from local repository to the remote (i.e on git.unl.edu)
 
 	git push origin master
 	Note: Normally master is used as the name for local repository.
 
-f) To pull changes from remote repository to local repository.
+i) To pull changes from remote repository to local repository.
 	git fetch origin master
 	git merge origin master
 		OR
 	git pull origin master (a combination of fetch and merge)
 
-g) To see the status of the files in your local repository (shows all untracked/modified files).
+j) To see the status of the files in your local repository (shows all untracked/modified files).
 	git status
 
-h) To ignore changes to a modified file and overwrite from the local repository
+k) To ignore changes to a modified file and overwrite from the local repository
 	git checkout <filename>
 
 ================================
@@ -79,6 +94,7 @@ e) Inform other developers.
 =================
 UPDATE HISTORY
 ================
-  If you are making a change to this file, please update this section for tracking purposes.
+  If you are making a change to this file, please update this section 
+ for tracking purposes.
 
  June 13,2016      Suraj   	Created the initial version
