@@ -134,6 +134,7 @@ Topology* TopologyFactory::create(const TString &description)
 void TopologyFactory::build(const NodePairDeque &nodepairs, Topology* topology)
 {
     TRACE("TopologyFactory::build -->");
+    //PRINT("NodePairs="<<nodepairs.size());
     for(NodePairDeque::const_iterator iter = nodepairs.begin();
         iter != nodepairs.end(); ++iter)
     {

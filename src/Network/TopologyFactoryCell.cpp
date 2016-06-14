@@ -22,7 +22,7 @@ Topology* TopologyFactory::createTopologyCell(const TString &description)
     int x = atoi(description.at(2).c_str()); // Range of x
     int y = atoi(description.at(3).c_str()); // Range of y, No of cells = x*y
 	
-	 result->extras.clear();		
+    result->extras.clear();		
     result->extras.push_back(k);		
     result->extras.push_back(x);		
     result->extras.push_back(y);

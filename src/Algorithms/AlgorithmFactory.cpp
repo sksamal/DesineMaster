@@ -22,6 +22,7 @@
 #include "Algorithms/ShortestPathAlgorithm.h"
 #include "Algorithms/TEDBAlgorithm.h"
 #include "Algorithms/CellAlgorithm.h"
+#include "Algorithms/SlimNetAlgorithm.h"
 #include "Algorithms/WidestShortestPathAlgorithm.h"
 #include "IO/Tag.h"
 #include "Utils/TraceManager.h"
@@ -103,8 +104,12 @@ Algorithm* AlgorithmFactory::create(const TString &description)
     if (description.front() == Tag::ALG_CELL)
     {
   	result = new CellAlgorithm(description);
+    } else
+    if (description.front() == Tag::ALG_SLIMNET)
+    {
+  	result = new SlimNetAlgorithm(description);
     } 
-   
+
     else
     {
         // No matching algorithm could be found....

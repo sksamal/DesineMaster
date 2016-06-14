@@ -27,7 +27,7 @@ Topology* TopologyFactory::createTopologyFatTree(const TString &description)
     {
 
     last_description = description;
- pairs.clear();
+    pairs.clear();
     edge_nodes.clear();
 //    cout<<"k="<<k<<"nodes="<<hosts+edges+aggs+cores<<endl;
 
@@ -102,7 +102,7 @@ Topology* TopologyFactory::createTopologyFatTree(const TString &description)
     for(int node = 0; node < cores; node++)
         edge_nodes.push_back(core+node);
     }
-result->edge_nodes = edge_nodes;
+    result->edge_nodes = edge_nodes;
 
    // result->tor_nodes = tor_nodes;
 

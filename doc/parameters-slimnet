@@ -1,8 +1,21 @@
 # Input parameter file by Tom Kleiberg (Jun 3, 2004)
 # number of flows, number of warmup flows and number of iterations
-Flows 40
-Warmup 10
-Iterations 10
+
+
+Flows 80101
+Warmup 100 
+Iterations 3
+
+
+#Buff type 0 : Time + Buffer Triggered
+#Buff Type 1 : Buffer Triggered only
+#Buff Type 2 : Time Triggered only
+Buff_Type 0 
+
+#Sim type 0 : OBS + OCS 
+#Sim type 1 : OCS only
+Sim_Type  0
+ 
 
 # Topology file name (no whitespaces) or Random Graph parameters
 # Adjancency List
@@ -21,20 +34,17 @@ Iterations 10
 #	"Random","nodes","links"
 
 # example
-# Topology File doc/topology_big.inf
-#Topology Erdos 100 0.06
+#Topology File doc/topology_big2.inf
+# <topology> <nodes> <probability>
+
+#Topology FatTree 32 
+#Topology Cell 16 16 16
 Topology SlimNet 1 2 8
-#Topology File doc/topology_2.inf
-
-
 # Random graph link probability <begin>  <end>  <step>
 # for each probability it will create a separate set of results
-# C = constant , 100 is capacity, not sure what the unit is ?
-# possible options are C = constant, E = Exponential, U = Uniform
-#uniformly chosen (U) or exponentially (E).
-# U(0.0 to 1.0 - min and max) , E(0.25 - mean) 
-Lcapacity C 100
-HLcapacity C 100
+
+Lcapacity C 50
+HLcapacity C 50
 
 # Log options
 # LogTypeIgor produces an ipf and bin file that can be loaded directly into Igor
@@ -47,43 +57,32 @@ LogDir .
 Seed 0 
 
 # Endpoints: 'U' means uniformly chosen source and dest, 'E' means exponentially
-# chosen source and dest for simulation
-#States whether source and destination are
-#uniformly chosen (U) or exponentially (E).
-# U(0.0 to 1.0 - min and max) , E(0.25 - mean) 
+# chosen source0and dest
 Endpoints U
 
 # Inter-arrival time between two successive flow requests
-# Stochastic distribution for the Inter-arrival
-#time between two successive flow requests.
-# Not sure which unit it is, again possible values are U,E and C
-Farrival E 10
+Farrival E 10  
+
+# RAndom flow to swictch between buffer/time triggering & long/short flows
+Frandom U 0 100
 
 # Flow Duration
-#Stochastic distribution for the duration of
-#each flow.
-Fduration E 250
+Fduration1 U 2000 5000
+Fduration2 U 0.008 320
 
 # Requested bandwidth
-#Stochastic distribution for the requested
-#bandwidth for each flow.
 Fbandwidth U 10 50
 
+#added for obs by suraj y.
+# Time reqd to fill buffer
+Fbuffer E 10
+
 # QoS constraints
-# Stochastic distribution for the (additive)
-#QoS constraints. The current limitation on
-#the number of QoS contraints is two.
-QoSCons U 0 20
-QoSCons U 0 20
+# QoSCons U 0 20
+# QoSCons U 0 20
+
 
 # Algorithms that are implemented
-#The routing algorithm(s) that is(are) to be
-#invoked during each iteration. Each algo-
-#rithm that should be applied, must be stated
-#on a separate line. The value is a combina-
-#tion of one of the algorithms from Table 5
-#and a linkcost function from Table 6.
-#
 # New MIRA "NewMIRA"
 # S-MIRA "MI-PA"
 # Shortest Path "SP"
@@ -104,8 +103,8 @@ QoSCons U 0 20
 
 # example
 #Algorithm WSP MinHop
-Algorithm SLIMNET MinHop
-
+#Algorithm CELL Cell
+Algorithm SLIMNET MinHop 
 # current used link state update policy
 # "Moving_Average_Relative <window_size> <threshold>"
 # "Moving_Average_Absolute <window_size> <threshold>"
@@ -115,10 +114,4 @@ Algorithm SLIMNET MinHop
 # "Holddown_Timer_threshold <period> <threshold>"
 
 # example
-#Link state update policy(s) and relative pa-
-#rameters. For each policy, or the same pol-
-#icy with different parameters, there will be
-#iterations using one or more algorithms as
-#given in Algorithm. The value is one of the
-#linkstate update policies shown in Table 7
 LsupdateInfo Period 50

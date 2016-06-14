@@ -1,0 +1,124 @@
+# Input parameter file by Tom Kleiberg (Jun 3, 2004)
+# number of flows, number of warmup flows and number of iterations
+Flows 40
+Warmup 10
+Iterations 10
+
+# Topology file name (no whitespaces) or Random Graph parameters
+# Adjancency List
+#	"Adjacency","<filename>"
+# Barabasi-Albert Random Graph
+#	"Barabasi","<nodes>","<m0>","[<m>]"
+# Erdos-Renyi Random Graph
+#	"Erdos","<nodes>","<probability>"
+# Topology stored on file
+#	"File","<filename>"
+# Full Mesh
+#	"Full","<nodes>"
+# Two-dimensional grid
+#	"Grid2D","<z1>","<z2>"
+# Random Graph
+#	"Random","nodes","links"
+
+# example
+# Topology File doc/topology_big.inf
+#Topology Erdos 100 0.06
+Topology SlimNet 1 2 8
+#Topology File doc/topology_2.inf
+
+
+# Random graph link probability <begin>  <end>  <step>
+# for each probability it will create a separate set of results
+# C = constant , 100 is capacity, not sure what the unit is ?
+# possible options are C = constant, E = Exponential, U = Uniform
+#uniformly chosen (U) or exponentially (E).
+# U(0.0 to 1.0 - min and max) , E(0.25 - mean) 
+Lcapacity C 100
+HLcapacity C 100
+
+# Log options
+# LogTypeIgor produces an ipf and bin file that can be loaded directly into Igor
+# Pro. The bin file contains data in a binary format.
+LogDir .
+# LogType LogTypeIgor
+
+# Seed for the random generator, must be 0 or larger. In case seed 0, a random
+# seed is choosen based on the current time
+Seed 0 
+
+# Endpoints: 'U' means uniformly chosen source and dest, 'E' means exponentially
+# chosen source and dest for simulation
+#States whether source and destination are
+#uniformly chosen (U) or exponentially (E).
+# U(0.0 to 1.0 - min and max) , E(0.25 - mean) 
+Endpoints U
+
+# Inter-arrival time between two successive flow requests
+# Stochastic distribution for the Inter-arrival
+#time between two successive flow requests.
+# Not sure which unit it is, again possible values are U,E and C
+Farrival E 10
+
+# Flow Duration
+#Stochastic distribution for the duration of
+#each flow.
+Fduration E 250
+
+# Requested bandwidth
+#Stochastic distribution for the requested
+#bandwidth for each flow.
+Fbandwidth U 10 50
+
+# QoS constraints
+# Stochastic distribution for the (additive)
+#QoS constraints. The current limitation on
+#the number of QoS contraints is two.
+QoSCons U 0 20
+QoSCons U 0 20
+
+# Algorithms that are implemented
+#The routing algorithm(s) that is(are) to be
+#invoked during each iteration. Each algo-
+#rithm that should be applied, must be stated
+#on a separate line. The value is a combina-
+#tion of one of the algorithms from Table 5
+#and a linkcost function from Table 6.
+#
+# New MIRA "NewMIRA"
+# S-MIRA "MI-PA"
+# Shortest Path "SP"
+# Widest Shortest Path "WSP"
+# SAMCRA "SAMCRA"
+# SAMCRA-B "SAMCRA-B"
+# SAMCRA-a "SAMCRA_after"
+# "TE-DB"
+
+# Linkcost functions
+# Inverse link capacity "Inverse"
+# .75  "PowerDot75"
+# Delta "Delta"
+# Delta3 "Delta3"
+# Square Sin "SquareSin"
+# Minimum delay "MinDelay"
+# Minimum hop "MinHop"
+
+# example
+#Algorithm WSP MinHop
+Algorithm SLIMNET MinHop
+
+# current used link state update policy
+# "Moving_Average_Relative <window_size> <threshold>"
+# "Moving_Average_Absolute <window_size> <threshold>"
+# "Moving_Average_class <window_size> <growth_factor> <bandw_base>"
+# "Period <period>"
+# "Holddown_Timer_class <period> <growth_factor> <bandw_base>"
+# "Holddown_Timer_threshold <period> <threshold>"
+
+# example
+#Link state update policy(s) and relative pa-
+#rameters. For each policy, or the same pol-
+#icy with different parameters, there will be
+#iterations using one or more algorithms as
+#given in Algorithm. The value is one of the
+#linkstate update policies shown in Table 7
+LsupdateInfo Period 50
