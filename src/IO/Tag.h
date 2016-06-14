@@ -10,6 +10,7 @@
     Author : T. Kleiberg July 2004
     Feb8,2016: Merged changes
     Updated: Suraj, 2016
+    Updated: Suraj , June 13 2016 - Added Slimnet Algorithm
 ******************************************************************************/
 
 
@@ -74,10 +75,11 @@ struct Tag
     static char* const ALG_SAMCRA_B;
     static char* const ALG_SSP;
     static char* const ALG_TEDB;
-	static char* const ALG_KARSMIRA;
-	static char* const ALG_KARSMIRA_ONE;
-	static char* const ALG_KARSMIRA_CAP;
-	static char* const ALG_CELL;
+    static char* const ALG_KARSMIRA;
+    static char* const ALG_KARSMIRA_ONE;
+    static char* const ALG_KARSMIRA_CAP;
+    static char* const ALG_CELL;
+    static char* const ALG_SLIMNET;
 
     // the linkcost functions that are implemented so far
     static char* const LCF_INVERSE;

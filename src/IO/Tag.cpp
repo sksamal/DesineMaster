@@ -7,6 +7,7 @@
     Author : T. Kleiberg, July 2004
     Feb 8,2016 : Merged changes
     Updated: Suraj, May 2016
+    Updated: Suraj June 13 2016 Added Slimnet
 ******************************************************************************/
 
 // Include(s)
@@ -71,6 +72,8 @@ char* const Tag::ALG_KARSMIRA = "KARSMIRA";
 char* const Tag::ALG_KARSMIRA_ONE = "KARSMIRAone";
 char* const Tag::ALG_KARSMIRA_CAP = "KARSMIRACap";
 char* const Tag::ALG_CELL= "CELL";
+char* const Tag::ALG_SLIMNET= "SLIMNET";
+
 // the linkcost functions that are implemented so far
 char* const Tag::LCF_INVERSE = "Inverse";
 char* const Tag::LCF_PWRDOT75 = "PowerDot75";

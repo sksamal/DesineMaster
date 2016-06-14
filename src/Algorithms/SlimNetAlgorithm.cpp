@@ -136,8 +136,8 @@ Path SlimNetAlgorithm::compute(const int &flow_source,
         state[counter].visited  = false;
     }
 
-    state[src].length = 0.0;
-    state[src].visited = true;
+//    state[src].length = 0.0;
+//    state[src].visited = true;
     LevelPath lpath;
      // Push source and destination to the queue
     lpath.source = flow_source - hosts;
@@ -149,63 +149,106 @@ Path SlimNetAlgorithm::compute(const int &flow_source,
 
     for (int level = k; level >= 0; level--)
     {
- 	while(!pathq.empty() && pathq.front().level==k) 
+ 	while(!pathq.empty() && pathq.front().level==level) 
        {
-	  LevelPath nextpath = pathq.pop_front();
-	  int src = nextPath.source;
-	  int dest = nextPath.dest;
+	  LevelPath nextpath = pathq.front();
+	  pathq.pop_front();
+	  int src = nextpath.source;
+	  int dest = nextpath.destination;
 	  int i_level=addresses[src][level], j_level=addresses[dest][level];
-	if(i_level == j_level) // No need to do anything, just go to next level
-	    continue;
-	else
+	  if(level==0) 
 	   {
-	     int i_0 = addresses[source][0]; 
+	     // If connected then direct link
+	     if((i_level%2==0 && j_level%2!=0)||(i_level%2!=0 && j_level%2==0))
+	       {
+	        // Create path between src and dest and mark it as visited
+       		state[dest+hosts].predecessor = src + hosts;
+       		state[dest+hosts].length = state[src + hosts].length + 1.0; /* default 1 metric */
+       		state[dest+hosts].visited = true;
+	       }
+	      else
+	       { 
+		 int t_level = (j_level + 1) % racks_per_level;
+		 int temp = dest - j_level + t_level;
+	         // Create paths between src,temp and temp,dest and mark it as visited
+       		 state[temp+hosts].predecessor = src + hosts;
+       		 state[temp+hosts].length = state[src + hosts].length + 1.0; /* default 1 metric */
+       		 state[temp+hosts].visited = true;
+
+       		 state[dest+hosts].predecessor = temp + hosts;
+       		 state[dest+hosts].length = state[temp + hosts].length + 1.0; /* default 1 metric */
+       		 state[dest+hosts].visited = true;
+	       }
+	     continue;	
+	  }
+
+	  if(i_level == j_level) // No need to do anything, just go to next level
+	     continue;
+	  else
+	   {
+	     int i_0 = addresses[src][0]; 
 	     // Calculate Fxy to see if there is a direct link betweek i_level and j_level
              int Fxy = (i_0==0) ? ((racks_per_level-1)-i_level) : ((i_level|i_0)&((racks_per_level-1)-(i_level&i_0)));
 
 	     // Direct link exists!
 	     if(Fxy == j_level) {
-		int temp = i_0; mul=1;
-		while(int l=1;l<level;l++) {
+		int temp = i_0, mul=1;
+		for(int l=1;l<level;l++) {
 		   mul*=racks_per_level;
-		   temp+=(mul*addresses[source][l])
+		   temp+=(mul*addresses[src][l]);
 		}
-		while(int l=level;l<=k;l++) {
+		for(int l=level;l<=k;l++) {
 		   mul*=racks_per_level;
-		   temp+=(mul*addresses[dest][l])
+		   temp+=(mul*addresses[dest][l]);
 		}
 	        // Create path between src and temp and mark it as visited
        		state[temp+hosts].predecessor = src + hosts;
-       		state[temp+hosts].length = state[src + hosts].length + 1.0; /* Assume default 1 metric */
+       		state[temp+hosts].length = state[src + hosts].length + 1.0; /* default 1 metric */
        		state[temp+hosts].visited = true;
 		// Remaining (temp,dest,l-1) - insert to pathq
+		LevelPath temppath;
+		temppath.source=temp;
+		temppath.destination=dest;
+		temppath.level=level-1;
+		pathq.push_back(temppath);
 	     }
 	     else // Direct link doesnot exist, find temp1 and temp2
 	     {
              	Fxy = (j_level==0) ? ((racks_per_level-1)-i_level) : ((i_level|j_level)&((racks_per_level-1)-(i_level&j_level)));
-		int temp = Fxy; mul=1;
-		while(int l=1;l<level;l++) {
+		int temp = Fxy, mul=1;
+		for(int l=1;l<level;l++) {
 		   mul*=racks_per_level;
-		   temp+=(mul*addresses[source][l])
+		   temp+=(mul*addresses[src][l]);
 		}
 		mul*=racks_per_level;
-		int temp1=temp+(mul*addresses[source][l]);
-		int temp2=temp+(mul*addresses[dest][l]);
-		while(int l=level;l<=k;l++) {
+		int temp1=temp+(mul*addresses[src][level]);
+		int temp2=temp+(mul*addresses[dest][level]);
+		for(int l=level+1;l<=k;l++) {
 		   mul*=racks_per_level;
-		   temp1+=(mul*addresses[dest][l])
-		   temp2+=(mul*addresses[dest][l])
+		   temp1+=(mul*addresses[dest][l]);
+		   temp2+=(mul*addresses[dest][l]);
 		}
 	        // Create path between temp1 and temp2 and mark it as visited
        		state[temp2+hosts].predecessor = temp1 + hosts;
        		state[temp2+hosts].length = state[temp1 + hosts].length + 1.0; /* Assume default 1 metric */
        		state[temp2+hosts].visited = true;
 		// Remaining is (src,temp1,0) and (temp2,dest,l-1) - insert to pathq
+		LevelPath temppath1, temppath2;
+		temppath1.source=src;
+		temppath1.destination=temp1;
+		temppath1.level=0;
+
+		temppath2.source=temp2;
+		temppath2.destination=dest;
+		temppath2.level=level-1;
+		pathq.push_back(temppath1);
+		pathq.push_back(temppath2);
 	     }
  	}
     }
   }
     // path calculation
+    int worknode;
     if (state[flow_destination].visited) // path was found
     {
         worknode = flow_destination;

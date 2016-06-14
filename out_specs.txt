@@ -4,6 +4,6 @@ Iterations  10
 Topology  
 LogDir  .
 LogType  LogTypeIgor
-Seed 804
+Seed 558
 Endpoints  U 0 1
 Farrival  E 10

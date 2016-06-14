@@ -86,7 +86,7 @@ QoSCons U 0 20
 #
 # New MIRA "NewMIRA"
 # S-MIRA "MI-PA"
- Shortest Path "SP"
+# Shortest Path "SP"
 # Widest Shortest Path "WSP"
 # SAMCRA "SAMCRA"
 # SAMCRA-B "SAMCRA-B"
@@ -103,7 +103,8 @@ QoSCons U 0 20
 # Minimum hop "MinHop"
 
 # example
-Algorithm WSP MinHop
+#Algorithm WSP MinHop
+Algorithm SLIMNET MinHop
 
 # current used link state update policy
 # "Moving_Average_Relative <window_size> <threshold>"

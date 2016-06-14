@@ -10,7 +10,7 @@ ifeq ($(BASE_DIR),)
 	include ../../src/makefile.inc
 endif
 
-OBJ=Algorithm.o DijkstraAlgorithm.o WSDijkstraAlgorithm.o NewMIRAAlgorithm.o SMIRAAlgorithm.o CellAlgorithm.o AbstractShortestPathAlgorithm.o SamcraAfterAlgorithm.o SamcraBeforeAlgorithm.o SamcraBAlgorithm.o TEDBAlgorithm.o AlgorithmFactory.o
+OBJ=Algorithm.o DijkstraAlgorithm.o WSDijkstraAlgorithm.o NewMIRAAlgorithm.o SMIRAAlgorithm.o CellAlgorithm.o AbstractShortestPathAlgorithm.o SamcraAfterAlgorithm.o SamcraBeforeAlgorithm.o SamcraBAlgorithm.o TEDBAlgorithm.o SlimNetAlgorithm.o AlgorithmFactory.o
 
 
 $(MOD) : cd AR 
