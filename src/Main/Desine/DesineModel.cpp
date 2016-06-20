@@ -107,7 +107,6 @@ Data* DesineModel::execute(const int &iterations)
     // Start iteration
 
 
-
     for (int iteration = 0; iteration < iterations; ++iteration)
     {
         TRACE("DesineModel::execute: starting iteration: " << iteration);
@@ -121,6 +120,7 @@ Data* DesineModel::execute(const int &iterations)
 	    	topology = (Topology *) 0;
 	    	topology = top_fct.create(parameters->topology);
 	    } while(!topology->isConnected());
+	    cout<<"Topology Created"<<endl;
 
 	    // Topology accepts the lsu visitor
 	    if (lsuv)

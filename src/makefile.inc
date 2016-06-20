@@ -39,7 +39,7 @@ ALL_OBJS=$(TMP_PKGS:%=$(OBJ_DIR)/%/*.o)
 
 # Optimization Flags
 #FLAGS=-O3 -funroll-loops -finline-functions -fexpensive-optimizations
-FLAGS=-g -funroll-loops -finline-functions -fexpensive-optimizations
+FLAGS=-g -gdwarf-2 # -funroll-loops -finline-functions -fexpensive-optimizations
 
 # Compiler settings
 CFLAGS=$(FLAGS) $(LOCALCFLAGS)

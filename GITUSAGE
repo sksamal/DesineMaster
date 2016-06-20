@@ -38,7 +38,7 @@ a) To clone the repository (i.e make a copy of the repository to your
 
 	git clone <url> (i.e git@git.unl.edu:ssamal/DesineMaster.git)
 
-b) To add a new file to the local repository
+b) To add a new or modified file to the local repository
 
 	git add <fileName>
 
@@ -86,7 +86,7 @@ TYPICAL WORKFLOW FOR DEVELOPMENT
 ================================
 
 a) Clone the repository to local system.
-b) Make changes to files (add/modify or delete).
+b) Make changes to files (add/modify or delete new files).
 c) Commit changes to local repository.
 d) Push changes to the remote repository. (i.e git.unl.edu)
 e) Inform other developers. 

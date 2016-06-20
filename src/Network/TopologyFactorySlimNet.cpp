@@ -57,8 +57,8 @@ Topology* TopologyFactory::createTopologySlimNet(const TString &description)
 	//	pow(racks_per_level, k+1)*(hosts_per_rack+1)
      int tor=host+hosts;
 
-     int addresses[hosts][k+1]; 
-     for(int node= host;node < hosts; node++) {
+     int addresses[tors][k+1]; 
+     for(int node= 0;node < tors; node++) {
 	  genSlimNetAddress(node,racks_per_level,addresses[node],k+1);
 //	  cout<<"node="<<node<<"Address="<<FormattedSlimNetAdd(addresses[node],k+1)<<endl;
 	}

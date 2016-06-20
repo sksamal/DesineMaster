@@ -25,6 +25,7 @@ clean:
 
 cleanall: clean
 	-$(RM) -r $(OBJ_DIR)/*/*.o
+	-$(RM) -r $(OBJ_DIR)/*/*/*.o
 	-$(RM) -r $(LIB_DIR)/*.a
 
 runfat: desine
