@@ -188,7 +188,6 @@ Path SlimNetAlgorithm::compute(const int &flow_source,
        		 state[dest+hosts].length = state[temp + hosts].length + 1.0; /* default 1 metric */
        		 state[dest+hosts].visited = true;
   		 cout<<temp<<"["<<FormattedSlimNetAdd(addresses[temp],k+1)<<"]-->>"<<dest<<"["<<FormattedSlimNetAdd(addresses[dest],k+1)<<"]"<<endl;
-		 cout<<"Haha"<<dest<<" "<<state[dest+hosts].predecessor-hosts<<" "<<state[state[dest+hosts].predecessor].predecessor-hosts<<endl;
 	       }
 	     continue;	
 	  }
@@ -265,6 +264,8 @@ Path SlimNetAlgorithm::compute(const int &flow_source,
  	}
     }
   }
+    pathq.clear();
+
     // path calculation
     int worknode;
     cout<<"Path from :: ";
