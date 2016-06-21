@@ -6,7 +6,7 @@
 
     This class implements the base-class Algorithm for a SlimNet
     Routing implementation. Adapted based on other algorithms
-
+    June 20, 2016 : Moded LevelPath and deque to .h from .cpp file
 
 ******************************************************************************/
 
@@ -27,12 +27,19 @@ class SlimNetAlgorithm : public Algorithm
     // instantiate new Algorithm subclasses
     friend class AlgorithmFactory;
 
+    // A datastructure to store tuples of source,destination and level
+    struct LevelPath
+    {
+	int level;
+	int source;
+	int destination;
+    };
     // Constanst(s)
 
     // Variable(s)
     private:
     RandomNumberGenerator* rng;
-
+    std::deque<LevelPath> pathq;       // Deque to store a set of level paths
     // Function(s) declarations
     public:
 //------------------------------------------------------------------------------

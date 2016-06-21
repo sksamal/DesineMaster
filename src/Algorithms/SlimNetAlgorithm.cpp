@@ -48,6 +48,7 @@ SlimNetAlgorithm::SlimNetAlgorithm(const TString &args) :
 SlimNetAlgorithm::~SlimNetAlgorithm()
 {
     TRACE("SlimNetAlgorithm::~SlimNetAlgorithm -->");
+    pathq.clear();
     // Empty
     TRACE("SlimNetAlgorithm::~SlimNetAlgorithm <--");
 }
@@ -101,12 +102,12 @@ Path SlimNetAlgorithm::compute(const int &flow_source,
         bool    visited;
     };
 
-    struct LevelPath
+/*    struct LevelPath
     {
 	int level;
 	int source;
 	int destination;
-    };
+    }; */
     IntVector extras = topology->getExtras();
     int k = extras[0];  // No of levels
     int hosts_per_rack = extras[1];  // Hosts per rack 
@@ -115,7 +116,7 @@ Path SlimNetAlgorithm::compute(const int &flow_source,
     int hosts = hosts_per_rack*tors;
     int addresses[tors][k+1];
     NodeLabel* state = new NodeLabel[tors];  // Maximum number of nodes possible in path
-    std::deque<LevelPath> pathq;
+ //   std::deque<LevelPath> pathq;
 
     // Node has to be one of the TORs and not hosts, if not return null.
     if(flow_source < hosts || flow_destination < hosts)
@@ -154,7 +155,8 @@ Path SlimNetAlgorithm::compute(const int &flow_source,
  	while(!pathq.empty() && pathq.front().level==level) 
        {
 	  LevelPath nextpath = pathq.front();
-	  pathq.pop_front();
+//	  pathq.pop_front();
+	  pathq.erase(pathq.begin());
 	  int src = nextpath.source;
 	  int dest = nextpath.destination;
 	  if(src == dest)  /* Move to next iteration - do nothing */
@@ -166,9 +168,12 @@ Path SlimNetAlgorithm::compute(const int &flow_source,
 	     if((i_level%2==0 && j_level%2!=0)||(i_level%2!=0 && j_level%2==0))
 	       {
 	        // Create path between src and dest and mark it as visited
-       		state[dest+hosts].predecessor = src + hosts;
-       		state[dest+hosts].length = state[src + hosts].length + 1.0; /* default 1 metric */
-       		state[dest+hosts].visited = true;
+       		//state[dest+hosts].predecessor = src + hosts;
+       		//state[dest+hosts].length = state[src + hosts].length + 1.0; /* default 1 metric */
+       		//state[dest+hosts].visited = true;
+       		state[dest].predecessor = src;
+       		state[dest].length = state[src].length + 1.0; /* default 1 metric */
+       		state[dest].visited = true;
   		cout<<src<<"["<<FormattedSlimNetAdd(addresses[src],k+1)<<"]-->>"<<dest<<"["<<FormattedSlimNetAdd(addresses[dest],k+1)<<"]"<<endl;
 	       }
 	      else
@@ -176,17 +181,20 @@ Path SlimNetAlgorithm::compute(const int &flow_source,
 		 int t_level = (j_level + 1) % racks_per_level;
 		 int temp = dest - j_level + t_level;
 	         // Create paths between src,temp and temp,dest and mark it as visited
-//       		 state[src+hosts].predecessor = temp + hosts;
-//       		 state[src+hosts].length = state[temp + hosts].length + 1.0; /* default 1 metric */
-//       		 state[src+hosts].visited = true;
-       		 state[temp+hosts].predecessor = src + hosts;
-       		 state[temp+hosts].length = state[src + hosts].length + 1.0; /* default 1 metric */
-       		 state[temp+hosts].visited = true;
+       		 //state[temp+hosts].predecessor = src + hosts;
+       		 //state[temp+hosts].length = state[src + hosts].length + 1.0; /* default 1 metric */
+       		 //state[temp+hosts].visited = true;
+       		 state[temp].predecessor = src;
+       		 state[temp].length = state[src].length + 1.0; /* default 1 metric */
+       		 state[temp].visited = true;
   		 cout<<src<<"["<<FormattedSlimNetAdd(addresses[src],k+1)<<"]-->>"<<temp<<"["<<FormattedSlimNetAdd(addresses[temp],k+1)<<"]"<<endl;
 
-       		 state[dest+hosts].predecessor = temp + hosts;
-       		 state[dest+hosts].length = state[temp + hosts].length + 1.0; /* default 1 metric */
-       		 state[dest+hosts].visited = true;
+       		 state[dest].predecessor = temp;
+       		 state[dest].length = state[temp].length + 1.0; /* default 1 metric */
+       		 state[dest].visited = true;
+       		 //state[dest+hosts].predecessor = temp + hosts;
+       		 //state[dest+hosts].length = state[temp + hosts].length + 1.0; /* default 1 metric */
+       		 //state[dest+hosts].visited = true;
   		 cout<<temp<<"["<<FormattedSlimNetAdd(addresses[temp],k+1)<<"]-->>"<<dest<<"["<<FormattedSlimNetAdd(addresses[dest],k+1)<<"]"<<endl;
 	       }
 	     continue;	
@@ -216,9 +224,12 @@ Path SlimNetAlgorithm::compute(const int &flow_source,
 		   temp+=(mul*addresses[dest][k-l]);  /* address stored in opposite order */
 		}
 	        // Create path between src and temp and mark it as visited
-       		state[temp+hosts].predecessor = src + hosts;
-       		state[temp+hosts].length = state[src + hosts].length + 1.0; /* default 1 metric */
-       		state[temp+hosts].visited = true;
+       		//state[temp+hosts].predecessor = src + hosts;
+       		//state[temp+hosts].length = state[src + hosts].length + 1.0; /* default 1 metric */
+       		//state[temp+hosts].visited = true;
+       		state[temp].predecessor = src;
+       		state[temp].length = state[src].length + 1.0; /* default 1 metric */
+       		state[temp].visited = true;
   		 cout<<src<<"["<<FormattedSlimNetAdd(addresses[src],k+1)<<"]-->>"<<temp<<"["<<FormattedSlimNetAdd(addresses[temp],k+1)<<"]"<<endl;
 		// Remaining (temp,dest,l-1) - insert to pathq
 		LevelPath temppath;
@@ -245,9 +256,12 @@ Path SlimNetAlgorithm::compute(const int &flow_source,
 		   temp2+=(mul*addresses[dest][k-l]);
 		}
 	        // Create path between temp1 and temp2 and mark it as visited
-       		state[temp2+hosts].predecessor = temp1 + hosts;
-       		state[temp2+hosts].length = state[temp1 + hosts].length + 1.0; /* Assume default 1 metric */
-       		state[temp2+hosts].visited = true;
+       		//state[temp2+hosts].predecessor = temp1 + hosts;
+       		//state[temp2+hosts].length = state[temp1 + hosts].length + 1.0; /* Assume default 1 metric */
+       		//state[temp2+hosts].visited = true;
+       		state[temp2].predecessor = temp1;
+       		state[temp2].length = state[temp1].length + 1.0; /* Assume default 1 metric */
+       		state[temp2].visited = true;
   		 cout<<temp1<<"["<<FormattedSlimNetAdd(addresses[temp1],k+1)<<"]-->>"<<temp2<<"["<<FormattedSlimNetAdd(addresses[temp2],k+1)<<"]"<<endl;
 		// Remaining is (src,temp1,0) and (temp2,dest,l-1) - insert to pathq
 		LevelPath temppath1, temppath2;
@@ -271,17 +285,20 @@ Path SlimNetAlgorithm::compute(const int &flow_source,
     cout<<"Path from :: ";
     cout<<"src="<<flow_source-hosts<<"["<<FormattedSlimNetAdd(addresses[flow_source-hosts],k+1)<<"] to ";
     cout<<"dest="<<flow_destination-hosts<<"["<<FormattedSlimNetAdd(addresses[flow_destination-hosts],k+1)<<"]"<<endl;
-    if (state[flow_destination].visited) // path was found
+    if (state[flow_destination-hosts].visited) // path was found
     {
-        worknode = flow_destination;
-        while (worknode != flow_source)
+        worknode = flow_destination-hosts;
+        //worknode = flow_destination;
+        while (worknode != flow_source-hosts)
         {
             // calculates path in reverse order
-	    cout<<worknode-hosts<<"["<<FormattedSlimNetAdd(addresses[worknode-hosts],k+1)<<"]<<---";
-            result.push_front(worknode);
+	    //cout<<worknode-hosts<<"["<<FormattedSlimNetAdd(addresses[worknode-hosts],k+1)<<"]<<---";
+	    cout<<worknode<<"["<<FormattedSlimNetAdd(addresses[worknode],k+1)<<"]<<---";
+            result.push_front(worknode+hosts);
             worknode = state[worknode].predecessor;
         }
-	cout<<worknode-hosts<<"["<<FormattedSlimNetAdd(addresses[worknode-hosts],k+1)<<"]"<<endl;
+	cout<<worknode<<"["<<FormattedSlimNetAdd(addresses[worknode],k+1)<<"]"<<endl;
+	//cout<<worknode-hosts<<"["<<FormattedSlimNetAdd(addresses[worknode-hosts],k+1)<<"]"<<endl;
         result.push_front(flow_source);
     }
 
