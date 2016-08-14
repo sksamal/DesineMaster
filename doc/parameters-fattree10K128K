@@ -4,7 +4,7 @@
 
 Flows 10000
 Warmup 100 
-Iterations 25
+Iterations 3
 
 
 #Buff type 0 : Time + Buffer Triggered
@@ -14,7 +14,7 @@ Buff_Type 0
 
 #Sim type 0 : OBS + OCS 
 #Sim type 1 : OCS only
-Sim_Type  0
+Sim_Type  1
  
 
 # Topology file name (no whitespaces) or Random Graph parameters
@@ -37,13 +37,13 @@ Sim_Type  0
 #Topology File doc/topology_big2.inf
 # <topology> <nodes> <probability>
 
-#Topology FatTree 32 
-Topology Cell 18 18 25
+Topology FatTree 80
+#Topology Cell 16 16 16
 # Random graph link probability <begin>  <end>  <step>
 # for each probability it will create a separate set of results
 
 Lcapacity C 100
-HLcapacity C 100
+HLcapacity C 100 
 
 # Log options
 # LogTypeIgor produces an ipf and bin file that can be loaded directly into Igor
@@ -60,7 +60,7 @@ Seed 0
 Endpoints U
 
 # Inter-arrival time between two successive flow requests
-Farrival E 10
+Farrival E 0.1  
 
 # RAndom flow to swictch between buffer/time triggering & long/short flows
 Frandom U 0 100
@@ -101,8 +101,8 @@ Fbuffer E 10
 # Minimum hop "MinHop"
 
 # example
-#Algorithm WSP MinHop
-Algorithm CELL Cell
+Algorithm WSP MinHop
+#Algorithm CELL Cell
 # current used link state update policy
 # "Moving_Average_Relative <window_size> <threshold>"
 # "Moving_Average_Absolute <window_size> <threshold>"

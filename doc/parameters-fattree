@@ -2,7 +2,7 @@
 # number of flows, number of warmup flows and number of iterations
 
 
-Flows 80101
+Flows 10101
 Warmup 100 
 Iterations 3
 
@@ -14,7 +14,7 @@ Buff_Type 0
 
 #Sim type 0 : OBS + OCS 
 #Sim type 1 : OCS only
-Sim_Type  0
+Sim_Type  1
  
 
 # Topology file name (no whitespaces) or Random Graph parameters
@@ -37,13 +37,13 @@ Sim_Type  0
 #Topology File doc/topology_big2.inf
 # <topology> <nodes> <probability>
 
-Topology FatTree 8
+Topology FatTree 16
 #Topology Cell 16 16 16
 # Random graph link probability <begin>  <end>  <step>
 # for each probability it will create a separate set of results
 
-Lcapacity C 50
-HLcapacity C 50
+Lcapacity C 60
+HLcapacity C 100 
 
 # Log options
 # LogTypeIgor produces an ipf and bin file that can be loaded directly into Igor

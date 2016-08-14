@@ -57,7 +57,7 @@ Endpoints U
 # Stochastic distribution for the Inter-arrival
 #time between two successive flow requests.
 # Not sure which unit it is, again possible values are U,E and C
-Farrival E 10
+Farrival E 0.1
 
 # Flow Duration
 #Stochastic distribution for the duration of
