@@ -6,6 +6,7 @@
 
     Author : T. Kleiberg  Sep 2006
     Updated: Suraj May 2016, Added for FatTree,Cell and Slimnet
+    08/14/16: Very minor changes for debugging
 ******************************************************************************/
 
 
@@ -135,6 +136,7 @@ void TopologyFactory::build(const NodePairDeque &nodepairs, Topology* topology)
 {
     TRACE("TopologyFactory::build -->");
     //PRINT("NodePairs="<<nodepairs.size());
+//    cout<<"NodePairs="<<nodepairs.size()<<endl;
     for(NodePairDeque::const_iterator iter = nodepairs.begin();
         iter != nodepairs.end(); ++iter)
     {
@@ -148,7 +150,11 @@ void TopologyFactory::build(const NodePairDeque &nodepairs, Topology* topology)
 	        d.push_back(iter->source);             // source
 	        d.push_back(iter->destination);        // dest
 	        d.push_back(0.0);                      // core
-	        d.push_back(link_cap); // cap
+		if(iter->isHost)
+		        d.push_back(hlink_cap);
+    	        else
+	       		d.push_back(link_cap); // cap
+//	        d.push_back(link_cap); // cap
 	        topology->link_list->insert(d);
 	        if (!topology->is_directed)
 	        {

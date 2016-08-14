@@ -3,6 +3,8 @@
     source file TopologyFactorySlimNet.cpp with implementation of
 	createTopologySlimNet (adapted based on other topologies)
     Author: Suraj  May2016
+    08/14/16 : Fixed the number of links (was miscalculated earlier), some 
+	       additional debug messages added.
 ******************************************************************************/
 
 
@@ -29,7 +31,7 @@ Topology* TopologyFactory::createTopologySlimNet(const TString &description)
     int tors = pow (racks_per_level, k+1);
     int hosts = hosts_per_rack*tors;
 
-    cout<<"hosts="<<hosts+tors<<endl;
+//    cout<<"hosts="<<hosts+tors<<endl;
     result->extras.clear();		
     result->extras.push_back(k);		
     result->extras.push_back(hosts_per_rack);		
@@ -39,16 +41,19 @@ Topology* TopologyFactory::createTopologySlimNet(const TString &description)
     result->is_directed       = description.size()<5 ? false :
         (atoi(description.at(4).c_str()) != 0);
     result->number_of_qos     = 0;
-    result->link_list         = new LinkList(result->number_of_nodes*((racks_per_level/2)+k));
+    int links = hosts + tors*(pow(racks_per_level,k-1)*k +racks_per_level/2+hosts_per_rack);
+    result->link_list         = new LinkList(links);
 
     if (!(last_description == description))
     {
 
+//    long hconns =0, lconns = 0 , oconns=0;
     last_description = description;
     // Make list of all posible nodepairs and remove link with
     pairs.clear();
     edge_nodes.clear();
-    cout<<"k="<<k<<"total nodes="<<hosts+tors<<endl;
+    cout<<"k="<<k<<" hosts="<<hosts<<" tors="<<tors<<" total="<<hosts+tors<<endl;
+    cout<<"Links="<<links<<endl;
 
     // We label the node from 0 as follows:
     // Host Nodes: 0 to pow(racks_per_level, k+1)*hosts_per_rack
@@ -63,7 +68,7 @@ Topology* TopologyFactory::createTopologySlimNet(const TString &description)
 //	  cout<<"node="<<node<<"Address="<<FormattedSlimNetAdd(addresses[node],k+1)<<endl;
 	}
 
-     cout<<"host="<<host<<"tor="<<tor<<endl;
+ //    cout<<"host="<<host<<"tor="<<tor<<endl;
 
     // Add nodes for hosts
     for(int node = host; node < hosts; node++)
@@ -81,7 +86,8 @@ Topology* TopologyFactory::createTopologySlimNet(const TString &description)
             x.destination = source*(hosts_per_rack)+dest+host;
 	    x.isHost = 1;  // if the pair has a host at one end
             pairs.push_back(x);
-	    cout<<x.source<<"["<<FormattedSlimNetAdd(addresses[source],k+1)<<"]---"<<x.destination<<"[Host] connected"<<endl;
+//	    hconns++;
+//	    cout<<x.source<<"["<<FormattedSlimNetAdd(addresses[source],k+1)<<"]---"<<x.destination<<"[Host] connected"<<endl;
 	} 
 	
 	    int j = source-(source%racks_per_level);
@@ -90,14 +96,16 @@ Topology* TopologyFactory::createTopologySlimNet(const TString &description)
             y.source = (tor+source);
             y.destination = tor+j+(source+1)%racks_per_level;
             pairs.push_back(y);
-	    cout<<y.source<<"["<<FormattedSlimNetAdd(addresses[source],k+1)<<"]---"<<y.destination<<"["<<FormattedSlimNetAdd(addresses[j+(source+1)%racks_per_level],k+1)<<"] connected"<<endl;
+//	    lconns++;
+//	    cout<<y.source<<"["<<FormattedSlimNetAdd(addresses[source],k+1)<<"]---"<<y.destination<<"["<<FormattedSlimNetAdd(addresses[j+(source+1)%racks_per_level],k+1)<<"] connected"<<endl;
 
 	    // Links in same level i<-->i+3
             NodePair z;
             z.source = (tor+source);
             z.destination = tor+j + (source+3)%racks_per_level;
             pairs.push_back(z);
-	    cout<<z.source<<"["<<FormattedSlimNetAdd(addresses[source],k+1)<<"]---"<<z.destination<<"["<<FormattedSlimNetAdd(addresses[j+(source+3)%racks_per_level],k+1)<<"] connected"<<endl;
+//	    lconns++;
+//	    cout<<z.source<<"["<<FormattedSlimNetAdd(addresses[source],k+1)<<"]---"<<z.destination<<"["<<FormattedSlimNetAdd(addresses[j+(source+3)%racks_per_level],k+1)<<"] connected"<<endl;
 
 	    // Links outside the base level
 	    for(;j<tors;j++) {
@@ -126,12 +134,16 @@ Topology* TopologyFactory::createTopologySlimNet(const TString &description)
             		p.destination = (tor+j);
             		pairs.push_back(p);
 //			cout<<"Add(source)="<<FormattedSlimNetAdd(addI,k+1)<<",Add(j)="<<FormattedSlimNetAdd(addJ,k+1)<<endl;
-	    		cout<<p.source<<"["<<FormattedSlimNetAdd(addresses[source],k+1)<<"]---"<<p.destination<<"["<<FormattedSlimNetAdd(addresses[j],k+1)<<"] connected"<<endl;
+//			oconns++;
+//	    		cout<<p.source<<"["<<FormattedSlimNetAdd(addresses[source],k+1)<<"]---"<<p.destination<<"["<<FormattedSlimNetAdd(addresses[j],k+1)<<"] connected"<<endl;
 		}			
 	     } 	
 	    }
      }
 
+//    cout<<"Conns created: hconns="<<hconns<<" lconns="<<lconns<<" oconns="<<oconns;
+//    cout<<" Total conns="<<hconns+lconns+oconns<<" <-bidirectional->="<<2*(hconns+lconns+oconns)<<endl;
+//    cout<<" Pairs="<<pairs.size()<<endl;
     }
 
     result->first_node = hosts;

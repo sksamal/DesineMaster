@@ -11,7 +11,8 @@
     Author : T. Kleiberg
     Version: 1
     Date   : June 2004
-
+    Date : 08/14/2016 - Suraj - Changed source/destination to be int from unsigned
+           int to be able to handle larger topologies like slimnet
 ******************************************************************************/
 // Include(s)
 #include "InsufficientCapacityException.h"
@@ -46,8 +47,10 @@ class Link : public AbstractNetworkElement
 
     // Variable(s)
     private:
-    usi source;               // source node
-    usi destination;          // destination node
+//    usi source;               // source node
+    int source;               // source node
+//    usi destination;          // destination node
+    int destination;          // destination node
     bool corelink;            // 1 for corelink, 0 otherwise
     double avail_capacity;    // currently available capacity
     double capacity;          // Link's maximum capacity
@@ -71,7 +74,9 @@ class Link : public AbstractNetworkElement
 //  Output:
 //
 //------------------------------------------------------------------------------
-    Link(const usi& source, const usi& destination, const double& capacity,
+//    Link(const usi& source, const usi& destination, const double& capacity,
+//         const bool& corelink, const DblVector& qos_metrics);
+    Link(const int& source, const int& destination, const double& capacity,
          const bool& corelink, const DblVector& qos_metrics);
 
     public:
@@ -100,8 +105,10 @@ class Link : public AbstractNetworkElement
 //
 //------------------------------------------------------------------------------
     const double& getCapacity() const;
-    const usi& getDestination() const;
-    const usi& getSource() const;
+//    const usi& getDestination() const;
+//    const usi& getSource() const;
+    const int& getDestination() const;
+    const int& getSource() const;
     const double getCost() const;
     const double& getQoS(const int& qos_index) const;
     const double getReservableCapacity() const;

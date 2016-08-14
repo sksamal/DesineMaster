@@ -7,7 +7,7 @@
     Author : T. Kleiberg
     Version: 1
     Date   : June 2004
-
+    Date : 08/14/2016 - Suraj - Changed source/destination to be int from unsigned
 ******************************************************************************/
 
 
@@ -36,7 +36,9 @@ using Types::usi;
 //------------------------------------------------------------------------------
 //  constructor Link::Link();
 //------------------------------------------------------------------------------
-Link::Link(const usi& source, const usi& destination, const double& capacity,
+//Link::Link(const usi& source, const usi& destination, const double& capacity,
+//           const bool& corelink, const DblVector& qos_metrics)
+Link::Link(const int& source, const int& destination, const double& capacity,
            const bool& corelink, const DblVector& qos_metrics)
 {
   	TRACE("Link::Link -->");
@@ -107,8 +109,10 @@ void Link::allocate(const double& req_capacity)
 //
 //------------------------------------------------------------------------------
 const double& Link::getCapacity() const { return capacity; }
-const usi& Link::getDestination() const { return destination; }
-const usi& Link::getSource() const      { return source; }
+//const usi& Link::getDestination() const { return destination; }
+//const usi& Link::getSource() const      { return source; }
+const int& Link::getDestination() const { return destination; }
+const int& Link::getSource() const      { return source; }
 const double Link::getCost() const
 {
     double result = 0.0;

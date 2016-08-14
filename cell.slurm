@@ -7,5 +7,5 @@
 #SBATCH --error=/work/deogun/ssamal/DesineMaster/desine-cell.err
 #SBATCH --output=/work/deogun/ssamal/DesineMaster/desine-cell.out
 
-#module load compiler/gcc/4.9
+module load compiler/gcc/5.4
 obj/desine doc/parameters-cell

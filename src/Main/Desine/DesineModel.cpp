@@ -8,6 +8,7 @@
     Version: 1
     Date   : June 2004
     Feb8,2016 : Merged changes
+    08/14/2016 : Minor changes for debugging
 ******************************************************************************/
 
 /******************************************************************************
@@ -112,6 +113,7 @@ Data* DesineModel::execute(const int &iterations)
         TRACE("DesineModel::execute: starting iteration: " << iteration);
 
 
+	    cout<<"Iteration "<<iteration<<" started"<<endl;
 		// Build topology
 	    Topology *topology = (Topology *) 0;
 	    do
@@ -120,7 +122,7 @@ Data* DesineModel::execute(const int &iterations)
 	    	topology = (Topology *) 0;
 	    	topology = top_fct.create(parameters->topology);
 	    } while(!topology->isConnected());
-	    cout<<"Topology Created"<<endl;
+	    cout<<"Iteration "<<iteration<<": Topology Created"<<endl;
 
 	    // Topology accepts the lsu visitor
 	    if (lsuv)
