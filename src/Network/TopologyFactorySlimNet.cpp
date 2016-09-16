@@ -53,7 +53,7 @@ Topology* TopologyFactory::createTopologySlimNet(const TString &description)
     pairs.clear();
     edge_nodes.clear();
     cout<<"k="<<k<<" hosts="<<hosts<<" tors="<<tors<<" total="<<hosts+tors<<endl;
-    cout<<"Links="<<links<<endl;
+    cout<<"Links="<<links<<" Configuration= ("<<k<<","<<racks_per_level<<","<<hosts_per_rack<<")"<<endl;
 
     // We label the node from 0 as follows:
     // Host Nodes: 0 to pow(racks_per_level, k+1)*hosts_per_rack

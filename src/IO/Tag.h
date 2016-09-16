@@ -80,6 +80,7 @@ struct Tag
     static char* const ALG_KARSMIRA_CAP;
     static char* const ALG_CELL;
     static char* const ALG_SLIMNET;
+    static char* const ALG_BCUBE;
 
     // the linkcost functions that are implemented so far
     static char* const LCF_INVERSE;
@@ -102,6 +103,7 @@ struct Tag
     static char* const TOP_FATTREE;
     static char* const TOP_SLIMNET;
     static char* const TOP_CELL;
+    static char* const TOP_BCUBE;
 
     // Tags used in Topoogy file and/or TopolReader class
 /*

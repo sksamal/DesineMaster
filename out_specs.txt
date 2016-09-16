@@ -1,12 +1,12 @@
-Flows  80101
+Flows  10000
 Warmup  100
-Iterations  3
+Iterations  1
 Topology  
 LogDir  .
 LogType  LogTypeIgor
-Seed 179
+Seed 45
 Endpoints  U 0 1
-Farrival  E 10
+Farrival  E 0.1
 Frandom  U 0 100
 Fbuffer E 10
 Fduration1  U 2000 5000

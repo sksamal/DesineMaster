@@ -123,6 +123,7 @@ class TopologyFactory
     Topology* createTopologyFatTree(const TString &description);
     Topology* createTopologySlimNet(const TString &description);
     Topology* createTopologyCell(const TString &description);
+    Topology* createTopologyBCube(const TString &description);
 
 //------------------------------------------------------------------------------
 //  Topology* createTopologyFile(description);

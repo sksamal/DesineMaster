@@ -38,7 +38,7 @@ Sim_Type  0
 # <topology> <nodes> <probability>
 
 #Topology FatTree 32 
-Topology Cell 18 18 25
+Topology Cell 45 45 25
 # Random graph link probability <begin>  <end>  <step>
 # for each probability it will create a separate set of results
 

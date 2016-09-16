@@ -2,6 +2,7 @@
 # Parameter file        : doc/parameters-slimnet10K16K
 # Print to stdout       : no
 # Output filename       : out
+(3,8,4)
 Sim Type 0 Buf Type 0Iteration 0 started
 k=3 hosts=16384 tors=4096 total=20480
 Links=835584
@@ -72,6 +73,7 @@ Iteration 24: Topology Created
 # Parameter file        : doc/parameters-slimnet10K32K
 # Print to stdout       : no
 # Output filename       : out
+(3,8,8)
 Sim Type 0 Buf Type 0Iteration 0 started
 k=3 hosts=32768 tors=4096 total=36864
 Links=868352
@@ -142,6 +144,7 @@ Iteration 24: Topology Created
 # Parameter file        : doc/parameters-slimnet10K64K
 # Print to stdout       : no
 # Output filename       : out
+(4,8,2)
 Sim Type 0 Buf Type 0Iteration 0 started
 k=4 hosts=65536 tors=32768 total=98304
 Links=67371008
@@ -212,6 +215,7 @@ Iteration 24: Topology Created
 # Parameter file        : doc/parameters-slimnet10K128K
 # Print to stdout       : no
 # Output filename       : out
+(4,8,4)
 Sim Type 0 Buf Type 0Iteration 0 started
 k=4 hosts=131072 tors=32768 total=163840
 Links=67502080

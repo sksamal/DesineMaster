@@ -40,7 +40,7 @@ Sim_Type  0
 #Topology SlimNet <levels> <hosts_per_rack> <racks_per_level>
 #Topology FatTree 32 
 #Topology Cell 16 16 16
-Topology SlimNet 3 8 8
+Topology SlimNet 4 1 8
 # Random graph link probability <begin>  <end>  <step>
 # for each probability it will create a separate set of results
 

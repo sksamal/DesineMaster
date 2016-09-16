@@ -8,6 +8,7 @@
     Feb 8,2016 : Merged changes
     Updated: Suraj, May 2016
     Updated: Suraj June 13 2016 Added Slimnet
+    Updated: Suraj Sep 15 2016 Added BCube
 ******************************************************************************/
 
 // Include(s)
@@ -73,6 +74,7 @@ char* const Tag::ALG_KARSMIRA_ONE = "KARSMIRAone";
 char* const Tag::ALG_KARSMIRA_CAP = "KARSMIRACap";
 char* const Tag::ALG_CELL= "CELL";
 char* const Tag::ALG_SLIMNET= "SLIMNET";
+char* const Tag::ALG_BCUBE= "BCUBE";
 
 // the linkcost functions that are implemented so far
 char* const Tag::LCF_INVERSE = "Inverse";
@@ -94,4 +96,5 @@ char* const Tag::TOP_GRID2D = "Grid2D";
 char* const Tag::TOP_RANDOM = "Random";
 char* const Tag::TOP_FATTREE = "FatTree";
 char* const Tag::TOP_SLIMNET = "SlimNet";
+char* const Tag::TOP_BCUBE = "BCube";
 char* const Tag::TOP_CELL = "Cell";

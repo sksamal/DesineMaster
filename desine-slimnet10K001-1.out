@@ -1,0 +1,284 @@
+# Desine started        : Thu Aug 18 20:45:42 2016
+# Parameter file        : doc/parameters-slimnet10K16K001
+# Print to stdout       : no
+# Output filename       : out
+(3,8,4)
+Sim Type 0 Buf Type 0Iteration 0 started
+k=3 hosts=16384 tors=4096 total=20480
+Links=835584
+Iteration 0: Topology Created
+Iteration 1 started
+Iteration 1: Topology Created
+Iteration 2 started
+Iteration 2: Topology Created
+Iteration 3 started
+Iteration 3: Topology Created
+Iteration 4 started
+Iteration 4: Topology Created
+Iteration 5 started
+Iteration 5: Topology Created
+Iteration 6 started
+Iteration 6: Topology Created
+Iteration 7 started
+Iteration 7: Topology Created
+Iteration 8 started
+Iteration 8: Topology Created
+Iteration 9 started
+Iteration 9: Topology Created
+Iteration 10 started
+Iteration 10: Topology Created
+Iteration 11 started
+Iteration 11: Topology Created
+Iteration 12 started
+Iteration 12: Topology Created
+Iteration 13 started
+Iteration 13: Topology Created
+Iteration 14 started
+Iteration 14: Topology Created
+Iteration 15 started
+Iteration 15: Topology Created
+Iteration 16 started
+Iteration 16: Topology Created
+Iteration 17 started
+Iteration 17: Topology Created
+Iteration 18 started
+Iteration 18: Topology Created
+Iteration 19 started
+Iteration 19: Topology Created
+Iteration 20 started
+Iteration 20: Topology Created
+Iteration 21 started
+Iteration 21: Topology Created
+Iteration 22 started
+Iteration 22: Topology Created
+Iteration 23 started
+Iteration 23: Topology Created
+Iteration 24 started
+Iteration 24: Topology Created
+
+ Flow Total 1989.04
+ FlowAccepted 1574.84
+ FlowBlocked 0
+ FlowRejectSetup 414.2
+ Data Total 261715
+ Data Accepted 197758
+ Data Blocked 0
+ Data RejectSetup 63957.3
+ NumUpdates 0
+ Processing Time 12.7618
+ AvgHopcount 8.07475
+# Desine finished: Thu Aug 18 20:51:14 2016
+
+# Desine started        : Thu Aug 18 20:51:14 2016
+# Parameter file        : doc/parameters-slimnet10K32K001
+# Print to stdout       : no
+# Output filename       : out
+(4,8,1)
+Sim Type 0 Buf Type 0Iteration 0 started
+k=4 hosts=32768 tors=32768 total=65536
+Links=67305472
+Iteration 0: Topology Created
+Iteration 1 started
+Iteration 1: Topology Created
+Iteration 2 started
+Iteration 2: Topology Created
+Iteration 3 started
+Iteration 3: Topology Created
+Iteration 4 started
+Iteration 4: Topology Created
+Iteration 5 started
+Iteration 5: Topology Created
+Iteration 6 started
+Iteration 6: Topology Created
+Iteration 7 started
+Iteration 7: Topology Created
+Iteration 8 started
+Iteration 8: Topology Created
+Iteration 9 started
+Iteration 9: Topology Created
+Iteration 10 started
+Iteration 10: Topology Created
+Iteration 11 started
+Iteration 11: Topology Created
+Iteration 12 started
+Iteration 12: Topology Created
+Iteration 13 started
+Iteration 13: Topology Created
+Iteration 14 started
+Iteration 14: Topology Created
+Iteration 15 started
+Iteration 15: Topology Created
+Iteration 16 started
+Iteration 16: Topology Created
+Iteration 17 started
+Iteration 17: Topology Created
+Iteration 18 started
+Iteration 18: Topology Created
+Iteration 19 started
+Iteration 19: Topology Created
+Iteration 20 started
+Iteration 20: Topology Created
+Iteration 21 started
+Iteration 21: Topology Created
+Iteration 22 started
+Iteration 22: Topology Created
+Iteration 23 started
+Iteration 23: Topology Created
+Iteration 24 started
+Iteration 24: Topology Created
+
+ Flow Total 1983.16
+ FlowAccepted 1958.96
+ FlowBlocked 0
+ FlowRejectSetup 24.2
+ Data Total 260188
+ Data Accepted 256310
+ Data Blocked 0
+ Data RejectSetup 3877.65
+ NumUpdates 0
+ Processing Time 19.6882
+ AvgHopcount 10.0516
+# Desine finished: Fri Aug 19 03:36:33 2016
+
+# Desine started        : Fri Aug 19 03:36:33 2016
+# Parameter file        : doc/parameters-slimnet10K64K001
+# Print to stdout       : no
+# Output filename       : out
+(4,8,2)
+Sim Type 0 Buf Type 0Iteration 0 started
+k=4 hosts=65536 tors=32768 total=98304
+Links=67371008
+Iteration 0: Topology Created
+Iteration 1 started
+Iteration 1: Topology Created
+Iteration 2 started
+Iteration 2: Topology Created
+Iteration 3 started
+Iteration 3: Topology Created
+Iteration 4 started
+Iteration 4: Topology Created
+Iteration 5 started
+Iteration 5: Topology Created
+Iteration 6 started
+Iteration 6: Topology Created
+Iteration 7 started
+Iteration 7: Topology Created
+Iteration 8 started
+Iteration 8: Topology Created
+Iteration 9 started
+Iteration 9: Topology Created
+Iteration 10 started
+Iteration 10: Topology Created
+Iteration 11 started
+Iteration 11: Topology Created
+Iteration 12 started
+Iteration 12: Topology Created
+Iteration 13 started
+Iteration 13: Topology Created
+Iteration 14 started
+Iteration 14: Topology Created
+Iteration 15 started
+Iteration 15: Topology Created
+Iteration 16 started
+Iteration 16: Topology Created
+Iteration 17 started
+Iteration 17: Topology Created
+Iteration 18 started
+Iteration 18: Topology Created
+Iteration 19 started
+Iteration 19: Topology Created
+Iteration 20 started
+Iteration 20: Topology Created
+Iteration 21 started
+Iteration 21: Topology Created
+Iteration 22 started
+Iteration 22: Topology Created
+Iteration 23 started
+Iteration 23: Topology Created
+Iteration 24 started
+Iteration 24: Topology Created
+
+ Flow Total 1996
+ FlowAccepted 1973.6
+ FlowBlocked 0
+ FlowRejectSetup 22.4
+ Data Total 262651
+ Data Accepted 259007
+ Data Blocked 0
+ Data RejectSetup 3644.81
+ NumUpdates 0
+ Processing Time 19.7901
+ AvgHopcount 10.0262
+# Desine finished: Fri Aug 19 10:24:47 2016
+
+# Desine started        : Fri Aug 19 10:24:47 2016
+# Parameter file        : doc/parameters-slimnet10K128K001
+# Print to stdout       : no
+# Output filename       : out
+(4,8,4)
+Sim Type 0 Buf Type 0Iteration 0 started
+k=4 hosts=131072 tors=32768 total=163840
+Links=67502080
+Iteration 0: Topology Created
+Iteration 1 started
+Iteration 1: Topology Created
+Iteration 2 started
+Iteration 2: Topology Created
+Iteration 3 started
+Iteration 3: Topology Created
+Iteration 4 started
+Iteration 4: Topology Created
+Iteration 5 started
+Iteration 5: Topology Created
+Iteration 6 started
+Iteration 6: Topology Created
+Iteration 7 started
+Iteration 7: Topology Created
+Iteration 8 started
+Iteration 8: Topology Created
+Iteration 9 started
+Iteration 9: Topology Created
+Iteration 10 started
+Iteration 10: Topology Created
+Iteration 11 started
+Iteration 11: Topology Created
+Iteration 12 started
+Iteration 12: Topology Created
+Iteration 13 started
+Iteration 13: Topology Created
+Iteration 14 started
+Iteration 14: Topology Created
+Iteration 15 started
+Iteration 15: Topology Created
+Iteration 16 started
+Iteration 16: Topology Created
+Iteration 17 started
+Iteration 17: Topology Created
+Iteration 18 started
+Iteration 18: Topology Created
+Iteration 19 started
+Iteration 19: Topology Created
+Iteration 20 started
+Iteration 20: Topology Created
+Iteration 21 started
+Iteration 21: Topology Created
+Iteration 22 started
+Iteration 22: Topology Created
+Iteration 23 started
+Iteration 23: Topology Created
+Iteration 24 started
+Iteration 24: Topology Created
+
+ Flow Total 1980.76
+ FlowAccepted 1956.08
+ FlowBlocked 0
+ FlowRejectSetup 24.68
+ Data Total 260863
+ Data Accepted 256963
+ Data Blocked 0
+ Data RejectSetup 3899.27
+ NumUpdates 0
+ Processing Time 19.6377
+ AvgHopcount 10.0419
+# Desine finished: Fri Aug 19 17:11:58 2016
+

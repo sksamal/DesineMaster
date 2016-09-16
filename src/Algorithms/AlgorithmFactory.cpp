@@ -23,6 +23,7 @@
 #include "Algorithms/TEDBAlgorithm.h"
 #include "Algorithms/CellAlgorithm.h"
 #include "Algorithms/SlimNetAlgorithm.h"
+#include "Algorithms/BCubeAlgorithm.h"
 #include "Algorithms/WidestShortestPathAlgorithm.h"
 #include "IO/Tag.h"
 #include "Utils/TraceManager.h"
@@ -108,8 +109,11 @@ Algorithm* AlgorithmFactory::create(const TString &description)
     if (description.front() == Tag::ALG_SLIMNET)
     {
   	result = new SlimNetAlgorithm(description);
+    } else
+    if (description.front() == Tag::ALG_BCUBE)
+    {
+  	result = new BCubeAlgorithm(description);
     } 
-
     else
     {
         // No matching algorithm could be found....

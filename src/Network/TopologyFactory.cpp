@@ -6,6 +6,7 @@
 
     Author : T. Kleiberg  Sep 2006
     Updated: Suraj May 2016, Added for FatTree,Cell and Slimnet
+    Updated: Suraj Sep 2016, Added for BCube 
     08/14/16: Very minor changes for debugging
 ******************************************************************************/
 
@@ -35,7 +36,9 @@ using Types::DblVector;
 #include "Network/TopologyFactoryFatTree.cpp"
 #include "Network/TopologyFactorySlimNet.h"
 #include "Network/TopologyFactorySlimNet.cpp"
+#include "Network/TopologyFactoryBCube.h"
 #include "Network/TopologyFactoryCell.cpp"
+#include "Network/TopologyFactoryBCube.cpp"
 
 
 // Constanst(s)
@@ -117,8 +120,12 @@ Topology* TopologyFactory::create(const TString &description)
     if (description.front() == Tag::TOP_CELL)
     {
 	result = createTopologyCell(description);
+    } else
+    if (description.front() == Tag::TOP_BCUBE)
+    {
+	result = createTopologyBCube(description);
     }
-    else
+    else 
     {
         // No matching topology could be found....
         ERROR("Unknown description: " << description.front());

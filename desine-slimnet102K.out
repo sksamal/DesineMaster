@@ -1,0 +1,22 @@
+# Desine started        : Wed Aug 24 20:19:57 2016
+# Parameter file        : doc/parameters-slimnet
+# Print to stdout       : no
+# Output filename       : out
+Sim Type 0 Buf Type 0Iteration 0 started
+k=3 hosts=102400 tors=4096 total=106496
+Links=1007616 Configuration= (3,8,25)
+Iteration 0: Topology Created
+
+ Flow Total 9103
+ FlowAccepted 6365
+ FlowBlocked 0
+ FlowRejectSetup 2738
+ Data Total 282226
+ Data Accepted 189719
+ Data Blocked 0
+ Data RejectSetup 92506.8
+ NumUpdates 1.73548e+07
+ Processing Time 787.988
+ AvgHopcount 8.08744
+# Desine finished: Wed Aug 24 20:20:17 2016
+

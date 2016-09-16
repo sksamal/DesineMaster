@@ -37,7 +37,7 @@ Sim_Type  1
 #Topology File doc/topology_big2.inf
 # <topology> <nodes> <probability>
 
-Topology FatTree 16
+Topology FatTree 160
 #Topology Cell 16 16 16
 # Random graph link probability <begin>  <end>  <step>
 # for each probability it will create a separate set of results
@@ -60,7 +60,7 @@ Seed 0
 Endpoints U
 
 # Inter-arrival time between two successive flow requests
-Farrival E 10  
+Farrival E 1
 
 # RAndom flow to swictch between buffer/time triggering & long/short flows
 Frandom U 0 100
@@ -101,7 +101,7 @@ Fbuffer E 10
 # Minimum hop "MinHop"
 
 # example
-Algorithm WSP MinHop
+Algorithm MI-PA
 #Algorithm CELL Cell
 # current used link state update policy
 # "Moving_Average_Relative <window_size> <threshold>"
