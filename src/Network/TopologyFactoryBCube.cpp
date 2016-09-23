@@ -41,7 +41,7 @@ Topology* TopologyFactory::createTopologyBCube(const TString &description)
     if (!(last_description == description))
     {
 
-//    long hconns =0, lconns = 0 , oconns=0;
+    long conns =0;
     last_description = description;
     // Make list of all posible nodepairs and remove link with
     pairs.clear();
@@ -57,11 +57,16 @@ Topology* TopologyFactory::createTopologyBCube(const TString &description)
      int tor=host+hosts;
 
      int addresses[tors][k+1]; 
+     int hostaddr[hosts][k+1]; 
      for(int node= 0;node < tors; node++) {
 	  genBCubeAddress(node,n,addresses[node],k+1);
-	  cout<<"node="<<node<<"Address="<<FormattedBCubeAdd(addresses[node],k+1)<<endl;
-	}
+//	  cout<<""<<node<<"["<<FormattedBCubeAdd(addresses[node],k+1)<<"] ";
+//        if(node%(tors/(k+1))==(tors/(k+1))-1) 
+//          cout<<endl<<endl;
+     }
 
+     for(int node= 0;node < hosts; node++) 
+	  genBCubeAddress(node,n,hostaddr[node],k+1);
  //    cout<<"host="<<host<<"tor="<<tor<<endl;
 
     // Add nodes for hosts
@@ -69,71 +74,36 @@ Topology* TopologyFactory::createTopologyBCube(const TString &description)
 	edge_nodes.push_back(node);
 
     // Add tors and establish connections
-    for(int level = 0; level < k+1; level++) 
-    {
-    int start = pow(n,level);
-    int leveltors = pow(n,level+1) - pow(n,level);
-    for(int source = 0; source < leveltors; source++)
-     {
-        
-       edge_nodes.push_back(tor+start+source); // all nodes are edge-nodes
-       for(int dest = 0; dest < n; dest++)
-	{
-	    //Links to Hosts
-            NodePair x;
-            x.source = (tor+start+source);
-            x.destination = source*(n)+dest+host;
-	    x.isHost = 1;  // if the pair has a host at one end
-            pairs.push_back(x);
-//	    hconns++;
-	    cout<<x.source<<"["<<FormattedBCubeAdd(addresses[source+start],k+1)<<"]---"<<x.destination<<"[Host] connected"<<endl;
-	} 
-	
-//	    lconns++;
-//	    cout<<z.source<<"["<<FormattedBCubeAdd(addresses[source],k+1)<<"]---"<<z.destination<<"["<<FormattedBCubeAdd(addresses[j+(source+3)%racks_per_level],k+1)<<"] connected"<<endl;
+    for(int source = 0; source < tors; source++) {
+	edge_nodes.push_back(source);
+	int level = addresses[source][0];
+	int tempnode = 0;
+//        cout<<"addr[k+1="<<k+1<<"] "<<addresses[source][k+1]<<endl;
+	for(int l=0;l<level;l++) {
+	  tempnode+=(addresses[source][k-l]*pow(n,l));
+//          cout<<"addr[k-"<<l<<"-"<<k-l<<"] "<<addresses[source][k-l]<<endl;
+	}
 
-	    // Links outside the base level
-//	    for(int j=0;j<tors;j++) {
-//		cout<<"Evaluating source & j"<<source<<" "<<j<<endl;
-//		int* addI=addresses[source];
-//		int lsbI=addI[k];
-//		int* addJ=addresses[j];
-//		int lsbJ=addJ[k];
-//		cout<<"Add(source)=("<<source<<")="<<FormattedBCubeAdd(addI,k+1)<<",Add(j)=("<<j<<")="<<FormattedBCubeAdd(addJ,k+1)<<""<<endl;
-//		if(lsbI!=lsbJ) continue;
-
-  	     //Recursive  - High Complexity - Unfortunate
-//		int t=0;
-//		while(t<k+1) {
-//		  int msbI=addI[t];
-//		  int msbJ=addJ[t++];
-
-	     		//As per definition
-//       		   int fxy = (lsbI==0) ? ((n-1)-msbI) : ((msbI|lsbI)&((n-1)-(msbI&lsbI)));
-		   //cout<<lsbI<<" "<<msbI<<" "<<fxy<<endl;
-  		   // Connect if either of this is true 
- // 		   if(fxy==msbJ) {
-//			cout<<"total_bridges="<<total_bridges<<" i="<<i<<" m="<<m<<" ae="<<i*total_bridges+m;
-   //         		NodePair p;
-   //         		p.source = (tor+source);
-   //         		p.destination = (tor+j);
-   //        		pairs.push_back(p);
-//			cout<<"Add(source)="<<FormattedBCubeAdd(addI,k+1)<<",Add(j)="<<FormattedBCubeAdd(addJ,k+1)<<endl;
-//			oconns++;
-//	    		cout<<p.source<<"["<<FormattedBCubeAdd(addresses[source],k+1)<<"]---"<<p.destination<<"["<<FormattedBCubeAdd(addresses[j],k+1)<<"] connected"<<endl;
-//		}			
-//	     } 	
-//	    }
-     }
+ 	for(int l=level+1;l<k+1;l++) 
+	  tempnode+=(addresses[source][k-l+1]*pow(n,l));
+ //       cout<<"addr[0] "<<addresses[source][0]<<endl;
+	for(int dest = 0; dest < n; dest++)
+         {
+	  NodePair x;
+	  x.source = (tor + source);
+	  x.destination = (tempnode + dest*pow(n,level));
+	  x.isHost = 1;  // if the pair has a host at one end
+          pairs.push_back(x);
+	  conns++;
+//	  cout<<x.source<<"["<<FormattedBCubeAdd(addresses[source],k+1)<<"]---"<<x.destination<<"[Host]["<<FormattedBCubeAdd(hostaddr[x.destination],k+1)<<"] connected"<<endl;
+	 }
+    }	
+    cout<<"Conns created: conns="<<conns;
+    cout<<" Pairs="<<pairs.size()<<endl;
     }
 
-//    cout<<"Conns created: hconns="<<hconns<<" lconns="<<lconns<<" oconns="<<oconns;
-//    cout<<" Total conns="<<hconns+lconns+oconns<<" <-bidirectional->="<<2*(hconns+lconns+oconns)<<endl;
-//    cout<<" Pairs="<<pairs.size()<<endl;
-    }
-
-    result->first_node = hosts;
-    result->last_node = hosts+tors-1;
+    result->first_node = 0;
+    result->last_node = hosts-1;
     result->edge_nodes = edge_nodes;
     // Now build nodepairs list.
     NodePairDeque nodepairs(pairs);

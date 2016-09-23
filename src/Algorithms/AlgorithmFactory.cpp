@@ -25,6 +25,7 @@
 #include "Algorithms/SlimNetAlgorithm.h"
 #include "Algorithms/BCubeAlgorithm.h"
 #include "Algorithms/WidestShortestPathAlgorithm.h"
+#include "Algorithms/FatTreeAlgorithm.h"
 #include "IO/Tag.h"
 #include "Utils/TraceManager.h"
 

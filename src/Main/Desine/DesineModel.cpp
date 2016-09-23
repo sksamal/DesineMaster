@@ -183,18 +183,18 @@ Data* DesineModel::execute(const int &iterations)
 
             	if (input_type == 0)
 			{
-            		 dest = topology->getRandomTorNode(parameters->endpoints);
-            		source = topology->getRandomTorNode(parameters->endpoints);
+            		 dest = topology->getRandomNode(parameters->endpoints);
+            		source = topology->getRandomNode(parameters->endpoints);
             		//source =topology->getTor(host);
             		//int dst = host;
 
                 	while (source==dest)
                 	{
-                    	dest = topology->getRandomTorNode(parameters->endpoints);
+                    	dest = topology->getRandomNode(parameters->endpoints);
                     	//dest=topology->getTor(host);
                 	}
                 }
-            	else
+		else
             	{
             		int num_pair_sd = topology->getNumSDpairs();
 

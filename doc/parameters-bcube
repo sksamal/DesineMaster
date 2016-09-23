@@ -41,7 +41,7 @@ Sim_Type  0
 #Topology FatTree 32 
 #Topology Cell 16 16 16
 #Topology SlimNet 2 25 8
-Topology BCube 1 4
+Topology BCube 2 4
 # Random graph link probability <begin>  <end>  <step>
 # for each probability it will create a separate set of results
 

@@ -81,6 +81,7 @@ struct Tag
     static char* const ALG_CELL;
     static char* const ALG_SLIMNET;
     static char* const ALG_BCUBE;
+    static char* const ALG_FATTREE;
 
     // the linkcost functions that are implemented so far
     static char* const LCF_INVERSE;

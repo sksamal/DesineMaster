@@ -37,7 +37,7 @@ Sim_Type  1
 #Topology File doc/topology_big2.inf
 # <topology> <nodes> <probability>
 
-Topology FatTree 160
+Topology FatTree 8
 #Topology Cell 16 16 16
 # Random graph link probability <begin>  <end>  <step>
 # for each probability it will create a separate set of results

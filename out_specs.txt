@@ -4,7 +4,7 @@ Iterations  1
 Topology  
 LogDir  .
 LogType  LogTypeIgor
-Seed 45
+Seed 1331
 Endpoints  U 0 1
 Farrival  E 0.1
 Frandom  U 0 100

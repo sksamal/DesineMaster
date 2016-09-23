@@ -217,13 +217,10 @@ int Topology::getRandomNode() const
 //------------------------------------------------------------------------------
 int Topology::getRandomTorNode(RandomVar* rng) const
 {
-    TRACE("Topology::getRandomEdgeNode -->");
+    TRACE("Topology::getRandomTorNode -->");
 
     // Random generator does generates (0, 1]
     int index = (int) ceil( (double) edge_nodes.size() * rng->generate()) + first_node;
-    int size = edge_nodes.size();
-    double var = first_node;
-    double var2 = last_node;
     while(index<first_node || index>last_node)
     {
     index = (int) ceil( (double) edge_nodes.size() * rng->generate()) + first_node;
@@ -231,10 +228,30 @@ int Topology::getRandomTorNode(RandomVar* rng) const
 
     int result = edge_nodes[index];
 
-    TRACE("Topology::getRandomEdgeNode <--");
+    TRACE("Topology::getRandomTorNode <--");
     return result;
 }
 
+
+//------------------------------------------------------------------------------
+//  int getRandomNode
+//------------------------------------------------------------------------------
+int Topology::getRandomNode(RandomVar* rng) const
+{
+    TRACE("Topology::getRandomNode -->");
+
+    // Random generator does generates (0, 1]
+    int index = (int) ceil( (double) (last_node - first_node + 1) * rng->generate()) + first_node;
+    while(index<first_node || index>last_node)
+    {
+    	index = (int) ceil( (double) (last_node - first_node + 1) * rng->generate()) + first_node;
+    }
+
+    int result = edge_nodes[index];
+
+    TRACE("Topology::getRandomNode <--");
+    return result;
+}
 
 //------------------------------------------------------------------------------
 //  NodeVector getNeighbours(int source) const;

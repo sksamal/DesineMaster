@@ -241,6 +241,7 @@ class Topology : public AbstractNetworkElement
 //  picking the node must be specified.
 //------------------------------------------------------------------------------
     int getRandomTorNode(RandomVar* rng) const;
+    int getRandomNode(RandomVar* rng) const;
 
 //------------------------------------------------------------------------------
 //

@@ -75,6 +75,7 @@ char* const Tag::ALG_KARSMIRA_CAP = "KARSMIRACap";
 char* const Tag::ALG_CELL= "CELL";
 char* const Tag::ALG_SLIMNET= "SLIMNET";
 char* const Tag::ALG_BCUBE= "BCUBE";
+char* const Tag::ALG_FATTREE= "FATTREE";
 
 // the linkcost functions that are implemented so far
 char* const Tag::LCF_INVERSE = "Inverse";
