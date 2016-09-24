@@ -4,7 +4,7 @@
 
 Flows 10000
 Warmup 100 
-Iterations 1
+Iterations 25
 
 
 #Buff type 0 : Time + Buffer Triggered
@@ -41,7 +41,7 @@ Sim_Type  0
 #Topology FatTree 32 
 #Topology Cell 16 16 16
 #Topology SlimNet 2 25 8
-Topology BCube 3 8 
+Topology BCube 13 2 
 # Random graph link probability <begin>  <end>  <step>
 # for each probability it will create a separate set of results
 
