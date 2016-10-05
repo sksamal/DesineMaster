@@ -4,13 +4,9 @@
 
     header file FatTreeAlgorithm.h for class: FatTreeAlgorithm
 
-    This class implements the base-class Algorithm for a FatTree 
-    implementation. It defines two distance functions: one is
-    based on link metric, the other is the maximal reservable bandwidth (mrb)
-    of the path. When selecting the next node to mark, one selects the node
-    with the minimal length. If several nodes have the same minimal length, one
-    selects the node with the largest mrb.
-
+    This class implements the base-class Algorithm for a FatTree
+    Routing implementation. Adapted based on other algorithms
+    June 20, 2016 : Moded LevelPath and deque to .h from .cpp file
 
 ******************************************************************************/
 
@@ -36,7 +32,6 @@ class FatTreeAlgorithm : public Algorithm
     // Variable(s)
     private:
     RandomNumberGenerator* rng;
-
     // Function(s) declarations
     public:
 //------------------------------------------------------------------------------
@@ -48,7 +43,7 @@ class FatTreeAlgorithm : public Algorithm
 //  Output:
 //
 //------------------------------------------------------------------------------
-    FatTreeAlgorithm(const TString &args);
+   FatTreeAlgorithm(const TString &args);
 
 
 //------------------------------------------------------------------------------
@@ -58,7 +53,7 @@ class FatTreeAlgorithm : public Algorithm
 //  Output:
 //
 //------------------------------------------------------------------------------
-    ~FatTreeAlgorithm();
+    virtual ~FatTreeAlgorithm();
 
 
 //------------------------------------------------------------------------------
@@ -88,6 +83,5 @@ class FatTreeAlgorithm : public Algorithm
     Path compute(const int &flow_source, const int &flow_destination,
                  Topology* topology);
 
-
 }; //end declarations
-#endif //WSDIJKSTRAALGORITHM_H
+#endif //DIJKSTRAALGORITHM_H

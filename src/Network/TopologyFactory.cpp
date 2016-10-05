@@ -33,6 +33,7 @@ using Types::DblVector;
 #include "Network/TopologyFactoryFull.cpp"
 #include "Network/TopologyFactoryGrid.cpp"
 #include "Network/TopologyFactoryRandom.cpp"
+#include "Network/TopologyFactoryFatTree.h"
 #include "Network/TopologyFactoryFatTree.cpp"
 #include "Network/TopologyFactorySlimNet.h"
 #include "Network/TopologyFactorySlimNet.cpp"

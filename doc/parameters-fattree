@@ -2,9 +2,9 @@
 # number of flows, number of warmup flows and number of iterations
 
 
-Flows 10101
-Warmup 100 
-Iterations 3
+Flows 10000
+Warmup 100
+Iterations 25
 
 
 #Buff type 0 : Time + Buffer Triggered
@@ -37,12 +37,12 @@ Sim_Type  1
 #Topology File doc/topology_big2.inf
 # <topology> <nodes> <probability>
 
-Topology FatTree 8
+Topology FatTree 16
 #Topology Cell 16 16 16
 # Random graph link probability <begin>  <end>  <step>
 # for each probability it will create a separate set of results
 
-Lcapacity C 60
+Lcapacity C 100
 HLcapacity C 100 
 
 # Log options
@@ -101,7 +101,8 @@ Fbuffer E 10
 # Minimum hop "MinHop"
 
 # example
-Algorithm MI-PA
+#Algorithm FATTREE FatTree
+Algorithm WSP MinHop
 #Algorithm CELL Cell
 # current used link state update policy
 # "Moving_Average_Relative <window_size> <threshold>"

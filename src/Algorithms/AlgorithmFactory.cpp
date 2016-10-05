@@ -114,6 +114,10 @@ Algorithm* AlgorithmFactory::create(const TString &description)
     if (description.front() == Tag::ALG_BCUBE)
     {
   	result = new BCubeAlgorithm(description);
+    } else
+    if (description.front() == Tag::ALG_FATTREE)
+    {
+  	result = new FatTreeAlgorithm(description);
     } 
     else
     {

@@ -71,6 +71,16 @@ BCubeAlgorithm::~BCubeAlgorithm()
 //------------------------------------------------------------------------------
 void genBCubeAddress(int number, int X, int *address, int length) {
    int i=0;
+   for(int i=length-1;i>0;i--)
+   {
+     address[i]= (number%X);
+     number = number/X;
+     if(number<0)
+     	address[i]=0;
+   }
+   address[0] = number;
+
+/*
    while(number>0)  //number in base 10
    {
      address[length-1-i]= (number%X);
@@ -82,7 +92,7 @@ void genBCubeAddress(int number, int X, int *address, int length) {
    { 
      address[length-1-i]=0;
      i++;
-   }
+   } */
 }
 
 //------------------------------------------------------------------------------
@@ -106,11 +116,11 @@ Path BCubeAlgorithm::compute(const int &flow_source,
     IntVector extras = topology->getExtras();
     int k = extras[0];  // No of levels
     int n = extras[1];  // Hosts per rack 
-    int tors = pow (n, k+1);
-    int hosts = n*tors;
+    int tors = (k+1) * pow (n, k);
+    int hosts = pow (n, k+1);
     int addresses[tors][k+1];
     int hostaddr[hosts][k+1];
-    NodeLabel* state = new NodeLabel[k+2];  // Maximum number of nodes possible in path
+    NodeLabel* state = new NodeLabel[hosts+tors];  // Maximum number of nodes possible in path
 
     // Node has to be one of the hosts and not TORs, if not return null.
     if(flow_source > hosts || flow_destination > hosts)
@@ -124,7 +134,7 @@ Path BCubeAlgorithm::compute(const int &flow_source,
     // Generate addresses in slimnet format
     for(int node= 0;node < hosts; node++) {
           genBCubeAddress(node,n,hostaddr[node],k+1);
-     //   cout<<"host="<<node<<"Address="<<FormattedBCubeAdd(hostaddr[node],k+1)<<endl;
+//        cout<<"host="<<node<<"Address="<<FormattedBCubeAdd(hostaddr[node],k+1)<<endl;
        }
 //
     // Initialization - mark all nodes as not visited
@@ -142,43 +152,61 @@ Path BCubeAlgorithm::compute(const int &flow_source,
     int workaddr[k+1];
     for(int l=0;l<k+1;l++)
 	workaddr[l] = hostaddr[worknode][l];
-    cout<<"\nBCube(k,n): ("<<k<<","<<n<<") , NumNodes="<<number_of_nodes<<endl;
+ //   cout<<"\nBCube(k,n): ("<<k<<","<<n<<") , NumNodes="<<number_of_nodes<<endl;
 
-    cout<<"SRC="<<flow_source<<"["<<FormattedBCubeAdd(hostaddr[flow_source],k+1)<<"] to ";
-    cout<<"DEST="<<flow_destination<<"["<<FormattedBCubeAdd(hostaddr[flow_destination],k+1)<<"]"<<endl;
+//    cout<<"SRC="<<flow_source<<"["<<FormattedBCubeAdd(hostaddr[flow_source],k+1)<<"] to ";
+//    cout<<"DEST="<<flow_destination<<"["<<FormattedBCubeAdd(hostaddr[flow_destination],k+1)<<"]"<<endl;
 	
 	for(int level = k; level >=0; level--)
        {
-	  int tempnode=0;
 	  if(hostaddr[src][k-level] != hostaddr[dest][k-level])
 	   {
+		// Find the appropriate next tor
+	  	int tempaddr[k+1];	
+		tempaddr[0] = level;
+		for(int l=1;l<=k-level;l++)  /* Address in opposite order */
+		   tempaddr[l] = workaddr[l-1]; 
+		for(int l=k-level+1;l<k+1;l++)
+		   tempaddr[l] = workaddr[l];
+		int temptor=0, mul = 1;
+		for(int l=0;l<k+1;l++) {
+		   temptor+=(mul*tempaddr[k-l]); /* address stored in opposite order */
+		   mul*=n;
+		}
+	        // Create path between worknode and temptor and mark it as visited
+       		state[temptor+hosts].predecessor = worknode;
+       		state[temptor+hosts].length = state[worknode].length + 1.0; /* default 1 metric */
+       		state[temptor+hosts].visited = true;
+ // 		cout<<worknode<<"["<<FormattedBCubeAdd(hostaddr[worknode],k+1)<<"]-->>"<<temptor+hosts<<"("<<temptor<<") ["<<FormattedBCubeAdd(addresses[temptor],k+1)<<"]"<<endl;
+
+		// Find the next host
 		workaddr[k-level]=hostaddr[dest][k-level];
-		int mul=1;
-		tempnode=0;
-		for(int l=0;l<k;l++) {
+		mul=1;
+		int tempnode=0;
+		for(int l=0;l<k+1;l++) {
 		   tempnode+=(mul*workaddr[k-l]); /* address stored in opposite order */
 		   mul*=n;
 		}
 	        // Create path between worknode and tempnode and mark it as visited
-       		state[tempnode].predecessor = worknode;
-       		state[tempnode].length = state[worknode].length + 1.0; /* default 1 metric */
+       		state[tempnode].predecessor = temptor+hosts;
+       		state[tempnode].length = state[temptor+hosts].length + 1.0; /* default 1 metric */
        		state[tempnode].visited = true;
-  		cout<<worknode<<"["<<FormattedBCubeAdd(hostaddr[worknode],k+1)<<"]-->>"<<tempnode<<"["<<FormattedBCubeAdd(hostaddr[tempnode],k+1)<<"]"<<endl;
+  //		cout<<temptor+hosts<<"("<<temptor<<") ["<<FormattedBCubeAdd(addresses[temptor],k+1)<<"]-->>"<<tempnode<<"["<<FormattedBCubeAdd(hostaddr[tempnode],k+1)<<"]"<<endl;
 		worknode = tempnode;
 	  }
  	}
 
     // path calculation
-    cout<<"Path from :: ";
-    cout<<"src="<<flow_source<<"["<<FormattedBCubeAdd(hostaddr[flow_source],k+1)<<"] to ";
-    cout<<"dest="<<flow_destination<<"["<<FormattedBCubeAdd(hostaddr[flow_destination],k+1)<<"]"<<endl;
-    if (state[flow_destination-hosts].visited) // path was found
+//    cout<<"Path from :: ";
+//    cout<<"src="<<flow_source<<"["<<FormattedBCubeAdd(hostaddr[flow_source],k+1)<<"] to ";
+//    cout<<"dest="<<flow_destination<<"["<<FormattedBCubeAdd(hostaddr[flow_destination],k+1)<<"]"<<endl;
+    if (state[flow_destination].visited) // path was found
     {
         worknode = flow_destination;
         while (worknode != flow_source)
         {
             // calculates path in reverse order
-	    cout<<worknode<<"["<<FormattedBCubeAdd(hostaddr[worknode],k+1)<<"]<<---";
+//	    cout<<worknode<<"["<<FormattedBCubeAdd(hostaddr[worknode],k+1)<<"]<<---";
             result.push_front(worknode);
             worknode = state[worknode].predecessor;
             
@@ -188,7 +216,7 @@ Path BCubeAlgorithm::compute(const int &flow_source,
 	   cout<<"Link not found between "<<result[0]<< " and " <<worknode<<endl;
 	}
         }
-	cout<<worknode<<"["<<FormattedBCubeAdd(hostaddr[worknode],k+1)<<"]"<<endl;
+//	cout<<worknode<<"["<<FormattedBCubeAdd(hostaddr[worknode],k+1)<<"]"<<endl;
         result.push_front(flow_source);
     }
      

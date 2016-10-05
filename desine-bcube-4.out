@@ -1,0 +1,213 @@
+# Desine started        : Sun Sep 25 11:09:03 2016
+# Parameter file        : doc/parameters-bcube32Kn14k3
+# Print to stdout       : no
+# Output filename       : out
+Sim Type 0 Buf Type 0Iteration 0 started
+k=3 hosts=38416 tors=10976 total=49392
+Links=153664 Configuration= (3,14)
+Conns created: conns=153664 Pairs=153664
+Iteration 0: Topology Created
+Iteration 1 started
+Iteration 1: Topology Created
+Iteration 2 started
+Iteration 2: Topology Created
+Iteration 3 started
+Iteration 3: Topology Created
+Iteration 4 started
+Iteration 4: Topology Created
+Iteration 5 started
+Iteration 5: Topology Created
+Iteration 6 started
+Iteration 6: Topology Created
+Iteration 7 started
+Iteration 7: Topology Created
+Iteration 8 started
+Iteration 8: Topology Created
+Iteration 9 started
+Iteration 9: Topology Created
+Iteration 10 started
+Iteration 10: Topology Created
+Iteration 11 started
+Iteration 11: Topology Created
+Iteration 12 started
+Iteration 12: Topology Created
+Iteration 13 started
+Iteration 13: Topology Created
+Iteration 14 started
+Iteration 14: Topology Created
+Iteration 15 started
+Iteration 15: Topology Created
+Iteration 16 started
+Iteration 16: Topology Created
+Iteration 17 started
+Iteration 17: Topology Created
+Iteration 18 started
+Iteration 18: Topology Created
+Iteration 19 started
+Iteration 19: Topology Created
+Iteration 20 started
+Iteration 20: Topology Created
+Iteration 21 started
+Iteration 21: Topology Created
+Iteration 22 started
+Iteration 22: Topology Created
+Iteration 23 started
+Iteration 23: Topology Created
+Iteration 24 started
+Iteration 24: Topology Created
+
+ Flow Total 9816.56
+ FlowAccepted 9805.68
+ FlowBlocked 0
+ FlowRejectSetup 10.88
+ Data Total 278493
+ Data Accepted 278129
+ Data Blocked 0
+ Data RejectSetup 364.25
+ NumUpdates 6.12197e+07
+ Processing Time 1336.39
+ AvgHopcount 8.43097
+# Desine finished: Sun Sep 25 11:32:28 2016
+
+# Desine started        : Sun Sep 25 11:32:28 2016
+# Parameter file        : doc/parameters-bcube64Kn16k3
+# Print to stdout       : no
+# Output filename       : out
+Sim Type 0 Buf Type 0Iteration 0 started
+k=3 hosts=65536 tors=16384 total=81920
+Links=262144 Configuration= (3,16)
+Conns created: conns=262144 Pairs=262144
+Iteration 0: Topology Created
+Iteration 1 started
+Iteration 1: Topology Created
+Iteration 2 started
+Iteration 2: Topology Created
+Iteration 3 started
+Iteration 3: Topology Created
+Iteration 4 started
+Iteration 4: Topology Created
+Iteration 5 started
+Iteration 5: Topology Created
+Iteration 6 started
+Iteration 6: Topology Created
+Iteration 7 started
+Iteration 7: Topology Created
+Iteration 8 started
+Iteration 8: Topology Created
+Iteration 9 started
+Iteration 9: Topology Created
+Iteration 10 started
+Iteration 10: Topology Created
+Iteration 11 started
+Iteration 11: Topology Created
+Iteration 12 started
+Iteration 12: Topology Created
+Iteration 13 started
+Iteration 13: Topology Created
+Iteration 14 started
+Iteration 14: Topology Created
+Iteration 15 started
+Iteration 15: Topology Created
+Iteration 16 started
+Iteration 16: Topology Created
+Iteration 17 started
+Iteration 17: Topology Created
+Iteration 18 started
+Iteration 18: Topology Created
+Iteration 19 started
+Iteration 19: Topology Created
+Iteration 20 started
+Iteration 20: Topology Created
+Iteration 21 started
+Iteration 21: Topology Created
+Iteration 22 started
+Iteration 22: Topology Created
+Iteration 23 started
+Iteration 23: Topology Created
+Iteration 24 started
+Iteration 24: Topology Created
+
+ Flow Total 9815.76
+ FlowAccepted 9810.88
+ FlowBlocked 0
+ FlowRejectSetup 4.88
+ Data Total 277873
+ Data Accepted 277657
+ Data Blocked 0
+ Data RejectSetup 215.585
+ NumUpdates 1.04396e+08
+ Processing Time 1348.69
+ AvgHopcount 8.50347
+# Desine finished: Sun Sep 25 12:12:10 2016
+
+# Desine started        : Sun Sep 25 12:12:10 2016
+# Parameter file        : doc/parameters-bcube128Kn19k3
+# Print to stdout       : no
+# Output filename       : out
+Sim Type 0 Buf Type 0Iteration 0 started
+k=3 hosts=130321 tors=27436 total=157757
+Links=521284 Configuration= (3,19)
+Conns created: conns=521284 Pairs=521284
+Iteration 0: Topology Created
+Iteration 1 started
+Iteration 1: Topology Created
+Iteration 2 started
+Iteration 2: Topology Created
+Iteration 3 started
+Iteration 3: Topology Created
+Iteration 4 started
+Iteration 4: Topology Created
+Iteration 5 started
+Iteration 5: Topology Created
+Iteration 6 started
+Iteration 6: Topology Created
+Iteration 7 started
+Iteration 7: Topology Created
+Iteration 8 started
+Iteration 8: Topology Created
+Iteration 9 started
+Iteration 9: Topology Created
+Iteration 10 started
+Iteration 10: Topology Created
+Iteration 11 started
+Iteration 11: Topology Created
+Iteration 12 started
+Iteration 12: Topology Created
+Iteration 13 started
+Iteration 13: Topology Created
+Iteration 14 started
+Iteration 14: Topology Created
+Iteration 15 started
+Iteration 15: Topology Created
+Iteration 16 started
+Iteration 16: Topology Created
+Iteration 17 started
+Iteration 17: Topology Created
+Iteration 18 started
+Iteration 18: Topology Created
+Iteration 19 started
+Iteration 19: Topology Created
+Iteration 20 started
+Iteration 20: Topology Created
+Iteration 21 started
+Iteration 21: Topology Created
+Iteration 22 started
+Iteration 22: Topology Created
+Iteration 23 started
+Iteration 23: Topology Created
+Iteration 24 started
+Iteration 24: Topology Created
+
+ Flow Total 9816.8
+ FlowAccepted 9815.8
+ FlowBlocked 0
+ FlowRejectSetup 1
+ Data Total 277845
+ Data Accepted 277800
+ Data Blocked 0
+ Data RejectSetup 45.8055
+ NumUpdates 2.08305e+08
+ Processing Time 1361.36
+ AvgHopcount 8.58074
+# Desine finished: Sun Sep 25 13:31:59 2016
+

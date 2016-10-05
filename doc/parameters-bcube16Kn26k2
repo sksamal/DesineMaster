@@ -1,0 +1,120 @@
+# Input parameter file by Tom Kleiberg (Jun 3, 2004)
+# number of flows, number of warmup flows and number of iterations
+
+
+Flows 10000
+Warmup 100 
+Iterations 25
+
+
+#Buff type 0 : Time + Buffer Triggered
+#Buff Type 1 : Buffer Triggered only
+#Buff Type 2 : Time Triggered only
+Buff_Type 0 
+
+#Sim type 0 : OBS + OCS 
+#Sim type 1 : OCS only
+Sim_Type  0
+ 
+
+# Topology file name (no whitespaces) or Random Graph parameters
+# Adjancency List
+#	"Adjacency","<filename>"
+# Barabasi-Albert Random Graph
+#	"Barabasi","<nodes>","<m0>","[<m>]"
+# Erdos-Renyi Random Graph
+#	"Erdos","<nodes>","<probability>"
+# Topology stored on file
+#	"File","<filename>"
+# Full Mesh
+#	"Full","<nodes>"
+# Two-dimensional grid
+#	"Grid2D","<z1>","<z2>"
+# Random Graph
+#	"Random","nodes","links"
+
+# example
+#Topology File doc/topology_big2.inf
+# <topology> <nodes> <probability>
+#Topology SlimNet <levels> <hosts_per_rack> <racks_per_level>
+#Topology BCube <levels(from 0 to ..)> <hosts_per_rack (or n)>
+#Topology FatTree 32 
+#Topology Cell 16 16 16
+#Topology SlimNet 2 25 8
+Topology BCube 2 26 
+# Random graph link probability <begin>  <end>  <step>
+# for each probability it will create a separate set of results
+
+Lcapacity C 100
+HLcapacity C 100
+
+# Log options
+# LogTypeIgor produces an ipf and bin file that can be loaded directly into Igor
+# Pro. The bin file contains data in a binary format.
+LogDir .
+# LogType LogTypeIgor
+
+# Seed for the random generator, must be 0 or larger. In case seed 0, a random
+# seed is choosen based on the current time
+Seed 0 
+
+# Endpoints: 'U' means uniformly chosen source and dest, 'E' means exponentially
+# chosen source0and dest
+Endpoints U
+
+# Inter-arrival time between two successive flow requests
+Farrival E 1.0
+
+# RAndom flow to swictch between buffer/time triggering & long/short flows
+Frandom U 0 100
+
+# Flow Duration
+Fduration1 U 2000 5000
+Fduration2 U 0.008 320
+
+# Requested bandwidth
+Fbandwidth U 10 50
+
+#added for obs by suraj y.
+# Time reqd to fill buffer
+Fbuffer E 10
+
+# QoS constraints
+# QoSCons U 0 20
+# QoSCons U 0 20
+
+
+# Algorithms that are implemented
+# New MIRA "NewMIRA"
+# S-MIRA "MI-PA"
+# Shortest Path "SP"
+# Widest Shortest Path "WSP"
+# SAMCRA "SAMCRA"
+# SAMCRA-B "SAMCRA-B"
+# SAMCRA-a "SAMCRA_after"
+# "TE-DB"
+
+# Linkcost functions
+# Inverse link capacity "Inverse"
+# .75  "PowerDot75"
+# Delta "Delta"
+# Delta3 "Delta3"
+# Square Sin "SquareSin"
+# Minimum delay "MinDelay"
+# Minimum hop "MinHop"
+
+# example
+#Algorithm WSP MinHop
+#Algorithm CELL Cell
+#Algorithm SLIMNET 
+ Algorithm BCUBE
+# current used link state update policy
+# "Moving_Average_Relative <window_size> <threshold>"
+# "Moving_Average_Absolute <window_size> <threshold>"
+# "Moving_Average_class <window_size> <growth_factor> <bandw_base>"
+# "Period <period>"
+# "Holddown_Timer_class <period> <growth_factor> <bandw_base>"
+# "Holddown_Timer_threshold <period> <threshold>"
+
+# example
+LsupdateInfo Period 50

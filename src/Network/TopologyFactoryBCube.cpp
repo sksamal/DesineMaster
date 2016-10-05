@@ -59,7 +59,7 @@ Topology* TopologyFactory::createTopologyBCube(const TString &description)
      int addresses[tors][k+1]; 
      int hostaddr[hosts][k+1]; 
      for(int node= 0;node < tors; node++) {
-	  genBCubeAddress(node,n,addresses[node],k+1);
+	 genBCubeAddress(node,n,addresses[node],k+1);
 //	  cout<<""<<node<<"["<<FormattedBCubeAdd(addresses[node],k+1)<<"] ";
 //        if(node%(tors/(k+1))==(tors/(k+1))-1) 
 //          cout<<endl<<endl;

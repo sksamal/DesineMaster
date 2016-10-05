@@ -4,10 +4,11 @@
 
     See header file for details
 
-    Author: Suraj Ketan Samal
-    Date: Sep 22
+    Author : Suraj Ketan Samal
+    Version: 1
+    Date   : October 5, 2016 
+    Updated: Created this to implement a deterministic routing for fattree 
 ******************************************************************************/
-
 
 
 // Include(s)
@@ -18,14 +19,15 @@
 #include "Network/Path.h"
 #include "Network/Topology.h"
 #include "Utils/TraceManager.h"
+#include "RandomVariables/RandomNumberGenerator.h"
+#include "RandomVariables/RandomVar.h"
+#include "RandomVariables/UniformVar.h"
 #include <cfloat>
 #include <cmath>
 #include <vector>
 using std::vector;
 
-
 // Constanst(s)
-
 
 // Variable(s)
 
@@ -34,7 +36,8 @@ using std::vector;
 //------------------------------------------------------------------------------
 //  constructor FatTreeAlgorithm::FatTreeAlgorithm()
 //------------------------------------------------------------------------------
-FatTreeAlgorithm::FatTreeAlgorithm(const TString &args) : Algorithm(args)
+FatTreeAlgorithm::FatTreeAlgorithm(const TString &args) :
+                   Algorithm(args)
 {
     TRACE("FatTreeAlgorithm::FatTreeAlgorithm -->");
     rng = RandomNumberGenerator::getRandomNumberGenerator();
@@ -43,7 +46,7 @@ FatTreeAlgorithm::FatTreeAlgorithm(const TString &args) : Algorithm(args)
 
 
 //------------------------------------------------------------------------------
-//  destructor DijkstraAlgorithm::~DijkstraAlgorithm()
+//  destructor FatTreeAlgorithm::~FatTreeAlgorithm()
 //------------------------------------------------------------------------------
 FatTreeAlgorithm::~FatTreeAlgorithm()
 {
@@ -52,135 +55,270 @@ FatTreeAlgorithm::~FatTreeAlgorithm()
     TRACE("FatTreeAlgorithm::~FatTreeAlgorithm <--");
 }
 
+//------------------------------------------------------------------------------
+//  Helper menthod to return a formatted FatTree address (for display purposes)
+//------------------------------------------------------------------------------
+   string FormattedFatTreeAdd(int *addr,int level) {
+     char address[20]; // 10 levels
+     std::sprintf(address,"<%d",addr[0]); 
+     for(int i=1;i<level;i++)
+	std::sprintf(address,"%s,%d",address,addr[i]);
+     std::sprintf(address,"%s>",address);
+     return string(address);
+}
+
+/*
+//------------------------------------------------------------------------------
+//  Helper menthod to generate Fattree address 
+//------------------------------------------------------------------------------
+void genFatTreeAddress(int number, int X, int *address, int length) {
+   int i=0;
+   while(number>0)  //number in base 10
+   {
+     address[length-1-i]= (number%X);
+     number = number/X;
+     i++;
+   }
+
+   while(i<length)
+   { 
+     address[length-1-i]=0;
+     i++;
+   }
+} */
+
+//------------------------------------------------------------------------------
+//  Helper menthod to generate FatTree address 
+//------------------------------------------------------------------------------
+void genFatTreeAddress(int number, int X, int *address, int length) {
+   for(int i=length-1;i>0;i--)
+   {
+     address[i]= (number%X);
+     number = number/X;
+     if(number<0)
+     	address[i]=0;
+   }
+   address[0] = number;    
+}
 
 //------------------------------------------------------------------------------
 //  Path FatTreeAlgorithm::compute()
 //------------------------------------------------------------------------------
 Path FatTreeAlgorithm::compute(const int &flow_source,
-                                  const int &flow_destination,
-                                  Topology* topology)
+                                const int &flow_destination,
+                                Topology* topology)
 {
     TRACE("FatTreeAlgorithm::compute -->");
-
     Path result;
 
     const int number_of_nodes = topology->getNumNodes();
-
     struct NodeLabel
     {
         int     predecessor;
-        bool    visited;
         double  length;
-        double  mrb;
+        bool    visited;
     };
-    NodeLabel* state = new NodeLabel[number_of_nodes];
 
-    // Initialization
-    for (int counter = 0; counter < number_of_nodes; ++counter)
+    IntVector extras = topology->getExtras();
+    int k = extras[0];  // Value of k
+    int hosts = k*k*k/4, host=0;
+    int edges = k*k/2, edge=hosts;
+    int aggs  = k*k/2, agg=edge+edges;
+    int cores = k*k/4, core=agg+aggs;
+    int addresses[number_of_nodes][5];
+//    for( int i=0; i<number_of_nodes; i++)
+// 	addresses[i] = new int [5];
+    NodeLabel* state = new NodeLabel[number_of_nodes];  // Maximum number of nodes possible in path
+
+    // Node has to be one of the hosts and not TORs, if not return null.
+    if(flow_source > hosts || flow_destination > hosts)
+	return result;
+
+    // Generate addresses in format
+    for(int node= 0;node < hosts; node++) {
+          genFatTreeAddress(node,k/2,addresses[node],5);
+//        cout<<"node="<<node<<"Address="<<FormattedFatTreeAdd(addresses[node],5)<<endl;
+       }
+    // Generate addresses in format
+    for(int node= 0;node < edges; node++) {
+          genFatTreeAddress(k*k*k*k/16+node,k/2,addresses[edge+node],5);
+  //      cout<<"edge="<<edge+node<<"Address="<<FormattedFatTreeAdd(addresses[edge+node],5)<<endl;
+       }
+    // Generate addresses in format
+    for(int node= 0;node < aggs; node++) {
+          genFatTreeAddress(2*k*k*k*k/16+node,k/2,addresses[agg+node],5);
+  //      cout<<"agg="<<agg+node<<"Address="<<FormattedFatTreeAdd(addresses[agg+node],5)<<endl;
+       }
+    for(int node= 0;node < cores; node++) {
+          genFatTreeAddress(3*k*k*k*k/16+node,k/2,addresses[core+node],5);
+  //      cout<<"core="<<core+node<<"Address="<<FormattedFatTreeAdd(addresses[core+node],5)<<endl;
+       }
+//
+    // Initialization - mark all nodes as not visited
+    for (int counter = 0; counter < 8; ++counter)
     {
         // CHANGED FROM 0 TO (N+1) BECAUSE TOPOLOGY STARTS COUNTING AT NODE 0
-        state[counter].predecessor = number_of_nodes + 1;
-        state[counter].visited  = false;
+        state[counter].predecessor = 9;
         state[counter].length = DBL_MAX;
-        state[counter].mrb = DBL_MAX;
+        state[counter].visited  = false;
     }
-    int worknode = flow_source; // First worknode is the wource
-    state[worknode].length = 0.0;
-    state[worknode].visited  = true;
 
-    // Repeat until destination has been visited
-    while(!state[flow_destination].visited && worknode != -1)
-    {
-        // Find all adjacent nodes to worknode and update length
-        for (LinkListIterator worklink = topology->getLinkIterator(worknode);
-            worklink(); ++worklink)
-        {
-//            (*worklink)->print(logid);
-            int destination = (*worklink)->getDestination();
-            double metric = (*worklink)->metric;
-            double rescap = (*worklink)->getReservableCapacity();
-            if ( (metric >= 0.0) && !state[destination].visited)
-            {
-                if (state[worknode].length + metric < state[destination].length)
-                {
-                    state[destination].predecessor = worknode;
-                    state[destination].length = state[worknode].length + metric;
-                    state[destination].mrb = (rescap < state[worknode].mrb) ?
-                        rescap : state[worknode].mrb;
-                } else
-                if (state[worknode].length + metric == state[destination].length)
-                {
-                    double newmrb = (rescap < state[worknode].mrb) ?
-                        rescap : state[worknode].mrb;
-                    if (newmrb > state[destination].mrb)
-                    {
-                        state[destination].predecessor = worknode;
-                        state[destination].mrb = newmrb;
-                    }
-                } // end else if (state[worknode]....
-            } // end if
-        }// end for LinkListIterator
+    int src = flow_source;   /* Host to host routing in this topology */
+    int dest = flow_destination;
+    int worknode = src;
+    int workaddr[5];
+    RandomNumberGenerator *rng = RandomNumberGenerator::getRandomNumberGenerator();
+    RandomVar *uvar = (RandomVar*) new UniformVar(rng, 0, (k/2));
+    for(int l=0;l<5;l++)
+ 	workaddr[l] = addresses[worknode][l];
+//    cout<<"\nFatTree(k): ("<<k<<") , NumNodes="<<number_of_nodes<<endl;
 
-        // Find node with minimum length that has not been visited yet and has
-        // largest mrb
-        double min = DBL_MAX;
-        double max = 0.0;
-        worknode = -1;
-        vector<int> worknodes;
-        for (int iter = 0 ; iter < number_of_nodes; ++iter)
-        {
-            if (!state[iter].visited)
-            {
-                if (state[iter].length < min)
-                {
-                    worknodes.clear();
-                    worknodes.push_back(iter);
-                    min = state[iter].length;
-                    max = state[iter].mrb;
-                } else // Find largest mrb
-                if ( (state[iter].length == min) && !worknodes.empty() )
-                {
-                    if ( state[iter].mrb == max )
-                    {
-                        worknodes.push_back(iter);
-                    } else
-                    if ( state[iter].mrb > max )
-                    {
-                        worknodes.clear();
-                        worknodes.push_back(iter);
-                        max = state[iter].mrb;
-                    }
-                } // end if (state[].length
-            } // end if (state[].visited
-        } // end for
+//    cout<<"SRC="<<flow_source<<"["<<FormattedFatTreeAdd(addresses[flow_source],5)<<"] to ";
+//    cout<<"DEST="<<flow_destination<<"["<<FormattedFatTreeAdd(addresses[flow_destination],5)<<"]"<<endl;
+	int tempaddr[5];	
 
-        // pick random worknode from the worknodes vector
-        if (!worknodes.empty())
-        {
-            worknode = worknodes.at( (size_t) ceil( ((double) worknodes.size()) *
-                rng->generate()) - 1);
-            // Set label for new worknode
-            state[worknode].visited = true;
-        }
-    } // end: while...
+	// Find next edge
+	tempaddr[0] = 1;
+	tempaddr[1] = 0;
+	for(int l=1;l<5;l++) //Address in opposite order 
+	  tempaddr[l+1] = workaddr[l];
+	int mul=1;
+	int tempnode=0;
+	for(int l=0;l<4;l++) {
+	   tempnode+=(mul*tempaddr[4-l]); /* address stored in opposite order */
+	   mul*=(k/2);
+	}
+       	state[tempnode+edge].predecessor = worknode;
+       	state[tempnode+edge].length = state[worknode].length + 1.0; /* default 1 metric */
+       	state[tempnode+edge].visited = true;
+// 	cout<<worknode<<"["<<FormattedFatTreeAdd(workaddr,5)<<"][Host]-->>"<<tempnode+edge<<"("<<tempnode<<") ["<<FormattedFatTreeAdd(addresses[tempnode+edge],5)<<"][Edge]"<<endl;
+	worknode = tempnode + edge;	
+    	for(int l=0;l<5;l++)
+ 	   workaddr[l] = tempaddr[l];
+
+    	int *destaddr = addresses[dest];
+	if( workaddr[2] != destaddr[1] || workaddr[3] != destaddr[2] || workaddr[4] != destaddr[3]) {
+	// Find next agg
+	tempaddr[0] = 2;
+        double var = uvar->generate();
+//        cout<<"URand="<<var<<"("<<(int)(var)<<")"<<endl;
+	tempaddr[4] = (int)(var);//(k/2)*std::rand()/RAND_MAX;
+	mul=1;
+	tempnode=0;
+	for(int l=0;l<4;l++) {
+	   tempnode+=(mul*tempaddr[4-l]); /* address stored in opposite order */
+	   mul*=(k/2);
+	}
+       	state[tempnode+agg].predecessor = worknode;
+       	state[tempnode+agg].length = state[worknode].length + 1.0; /* default 1 metric */
+       	state[tempnode+agg].visited = true;
+ //	cout<<worknode<<"("<<worknode - edge<<")["<<FormattedFatTreeAdd(workaddr,5)<<"][Edge]-->>"<<tempnode+agg<<"("<<tempnode<<") ["<<FormattedFatTreeAdd(addresses[tempnode+agg],5)<<"][Agg]"<<endl;
+	worknode = tempnode + agg;
+    	for(int l=0;l<5;l++)
+ 	   workaddr[l] = tempaddr[l];
+
+	if( workaddr[2] != destaddr[1] || workaddr[3] != destaddr[2]) {
+	// Find next core
+	tempaddr[0] = 3;
+	tempaddr[1] = tempaddr[2] = 0;
+	tempaddr[3] = workaddr[4];
+        double var = uvar->generate();
+  //      cout<<"CRand="<<var<<"("<<(int)(var)<<")"<<endl;
+	tempaddr[4] = (int)(var);//(k/2)*std::rand()/RAND_MAX;
+	mul=1;
+	tempnode=0;
+	for(int l=0;l<4;l++) {
+	   tempnode+=(mul*tempaddr[4-l]); /* address stored in opposite order */
+	   mul*=(k/2);
+	}
+       	state[tempnode+core].predecessor = worknode;
+       	state[tempnode+core].length = state[worknode].length + 1.0; /* default 1 metric */
+       	state[tempnode+core].visited = true;
+ //	cout<<worknode<<"("<<worknode-agg<<")["<<FormattedFatTreeAdd(workaddr,5)<<"][Agg]-->>"<<tempnode+core<<"("<<tempnode<<") ["<<FormattedFatTreeAdd(addresses[tempnode+core],5)<<"][Core]"<<endl;
+	worknode = tempnode + core;
+    	for(int l=0;l<5;l++)
+ 	   workaddr[l] = tempaddr[l];
+
+	// Find next agg
+	tempaddr[0] = 2;
+	tempaddr[1] = 0;
+	tempaddr[2] = destaddr[1];
+	tempaddr[3] = destaddr[2];
+	tempaddr[4] = workaddr[3];
+	mul=1;
+	tempnode=0;
+	for(int l=0;l<4;l++) {
+	   tempnode+=(mul*tempaddr[4-l]); /* address stored in opposite order */
+	   mul*=(k/2);
+	}
+       	state[tempnode+agg].predecessor = worknode;
+       	state[tempnode+agg].length = state[worknode].length + 1.0; /* default 1 metric */
+       	state[tempnode+agg].visited = true;
+ //	cout<<worknode<<"("<<worknode-core<<")["<<FormattedFatTreeAdd(workaddr,5)<<"][Core]-->>"<<tempnode+agg<<"("<<tempnode<<") ["<<FormattedFatTreeAdd(addresses[tempnode+agg],5)<<"][Agg]"<<endl;
+	worknode = tempnode + agg;
+    	for(int l=0;l<5;l++)
+ 	   workaddr[l] = tempaddr[l];
+	}
+	
+	// Find next edge
+	tempaddr[0] = 1;
+	tempaddr[1] = 0;
+	tempaddr[2] = destaddr[1];
+	tempaddr[3] = destaddr[2];
+	tempaddr[4] = destaddr[3];
+	mul=1;
+	tempnode=0;
+	for(int l=0;l<4;l++) {
+	   tempnode+=(mul*tempaddr[4-l]); /* address stored in opposite order */
+	   mul*=(k/2);
+	}
+       	state[tempnode+edge].predecessor = worknode;
+       	state[tempnode+edge].length = state[worknode].length + 1.0; /* default 1 metric */
+       	state[tempnode+edge].visited = true;
+ //	cout<<worknode<<"("<<worknode-agg<<")["<<FormattedFatTreeAdd(workaddr,5)<<"][Agg]-->>"<<tempnode+edge<<"("<<tempnode<<") ["<<FormattedFatTreeAdd(addresses[tempnode+edge],5)<<"][Edge]"<<endl;
+	worknode = tempnode + edge;
+    	for(int l=0;l<5;l++)
+ 	   workaddr[l] = tempaddr[l];
+	}
+
+	// Destination node
+       	state[dest].predecessor = worknode;
+       	state[dest].length = state[worknode].length + 1.0; /* default 1 metric */
+       	state[dest].visited = true;
+ //	cout<<worknode<<"("<<worknode-edge<<")["<<FormattedFatTreeAdd(workaddr,5)<<"][Edge]-->>"<<dest<<"["<<FormattedFatTreeAdd(addresses[dest],5)<<"][Host]"<<endl;
 
     // path calculation
-    worknode = flow_destination;
-
-    if (state[worknode].predecessor != (number_of_nodes+1)) // A path was found
+//    cout<<"Path from :: ";
+//    cout<<"src="<<flow_source<<"["<<FormattedFatTreeAdd(addresses[flow_source],k+1)<<"] to ";
+//    cout<<"dest="<<flow_destination<<"["<<FormattedFatTreeAdd(addresses[flow_destination],k+1)<<"]"<<endl;
+    if (state[flow_destination].visited) // path was found
     {
+        worknode = flow_destination;
         while (worknode != flow_source)
         {
-            // add node at front because dijktra
             // calculates path in reverse order
+//	    cout<<worknode<<"["<<FormattedFatTreeAdd(addresses[worknode],k+1)<<"]<<---";
             result.push_front(worknode);
             worknode = state[worknode].predecessor;
+            
+            Link* lk = topology->link(result[0], worknode);
+
+       	if(lk == NULL) {
+	   cout<<"Link not found between "<<result[0]<< " and " <<worknode<<endl;
+	}
         }
+//	cout<<worknode<<"["<<FormattedFatTreeAdd(addresses[worknode],k+1)<<"]"<<endl;
         result.push_front(flow_source);
     }
-
+     
+    if(result.size()==0) {
+    cout<<"Blocked: src="<<flow_source<<"["<<FormattedFatTreeAdd(addresses[flow_source],k+1)<<"] to ";
+    cout<<"dest="<<flow_destination<<"["<<FormattedFatTreeAdd(addresses[flow_destination],k+1)<<"]"<<endl;
+    }
     delete [] state;
-
+//    for( int i=0; i<number_of_nodes; i++)
+// 	delete [] addresses[i];
     TRACE("FatTreeAlgorithm::compute <--");
     return result;
-}
+ }
+

@@ -242,6 +242,7 @@ int Topology::getRandomNode(RandomVar* rng) const
 
     // Random generator does generates (0, 1]
     int index = (int) ceil( (double) (last_node - first_node + 1) * rng->generate()) + first_node;
+
     while(index<first_node || index>last_node)
     {
     	index = (int) ceil( (double) (last_node - first_node + 1) * rng->generate()) + first_node;
